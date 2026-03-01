@@ -1,0 +1,157 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: #0e0e0e;
+	color: #d4c5a0;
+	font-family: "Segoe UI", system-ui, sans-serif;
+	font-size: 15px;
+}
+
+.app {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.header h1 {
+	margin: 0;
+	font-size: 2rem;
+	color: #c8a84b;
+	letter-spacing: 0.05em;
+}
+
+.subtitle {
+	margin: 0.25rem 0 0;
+	color: #7a6f5a;
+	font-size: 0.875rem;
+}
+
+.search-bar {
+	margin-bottom: 0.75rem;
+}
+
+.search-bar form {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.search-bar form button {
+	background: #c8a84b;
+	color: #1a1a1a;
+	border: none;
+	border-radius: 6px;
+	padding: 0.65rem 0.9rem;
+}
+
+.search-input {
+	width: 100%;
+	padding: 0.65rem 0.9rem;
+	background: #1a1a1a;
+	border: 1px solid #3a3020;
+	border-radius: 6px;
+	color: #d4c5a0;
+	font-size: 1rem;
+	font-family: "Fira Code", "Cascadia Code", monospace;
+	outline: none;
+	transition: border-color 150ms;
+}
+
+.search-input:focus {
+	border-color: #c8a84b;
+}
+
+.search-input::placeholder {
+	color: #4a4030;
+}
+
+.results-meta {
+	font-size: 0.8rem;
+	color: #7a6f5a;
+	margin-bottom: 0.75rem;
+}
+
+.results {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+
+.card {
+	background: #161410;
+	border: 1px solid #2a2418;
+	border-radius: 6px;
+	padding: 0.75rem 1rem;
+}
+
+.card:hover {
+	border-color: #4a3c20;
+}
+
+.card-header {
+	display: flex;
+	align-items: baseline;
+	gap: 0.75rem;
+	margin-bottom: 0.35rem;
+	flex-wrap: wrap;
+}
+
+.rw-name {
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: #e8c96a;
+}
+
+.rw-runes {
+	font-family: "Fira Code", "Cascadia Code", monospace;
+	font-size: 0.85rem;
+	color: #9a8560;
+}
+
+.badge-ladder {
+	font-size: 0.7rem;
+	padding: 0.1rem 0.45rem;
+	border-radius: 3px;
+	background: #2a1a0a;
+	border: 1px solid #7a4010;
+	color: #c87030;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.card-meta {
+	display: flex;
+	gap: 0.5rem;
+	font-size: 0.8rem;
+	color: #6a6050;
+	margin-bottom: 0.4rem;
+}
+
+.rw-bases {
+	text-transform: capitalize;
+}
+
+.rw-desc {
+	margin: 0;
+	font-size: 0.85rem;
+	color: #9a8e78;
+	line-height: 1.45;
+}
+
+.no-results {
+	text-align: center;
+	color: #5a5040;
+	margin-top: 2rem;
+}

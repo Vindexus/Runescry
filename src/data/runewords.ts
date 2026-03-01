@@ -1,0 +1,160 @@
+import { type Runeword } from "../types";
+
+export const RUNEWORDS: Runeword[] = [
+	{
+		name: "Enigma",
+		runes: ["Jah", "Ith", "Ber"],
+		sockets: 3,
+		bases: ["armor"],
+		description:
+			"+1 To Teleport, +45% Faster Run/Walk, Increase Maximum Life 5%, Magic Find 112%",
+		levelReq: 65,
+		ladderOnly: true,
+	},
+	{
+		name: "Infinity",
+		runes: ["Ber", "Mal", "Ber", "Ist"],
+		sockets: 4,
+		bases: ["polearm"],
+		description:
+			"Level 12 Conviction Aura, 50% Faster Cast Rate, -45% To Enemy Lightning Resistance",
+		levelReq: 63,
+		ladderOnly: true,
+	},
+	{
+		name: "Grief",
+		runes: ["Eth", "Tir", "Lo", "Mal", "Ral"],
+		sockets: 5,
+		bases: ["sword", "axe"],
+		description:
+			"+340-400 Damage, Ignore Target Defense, -25% Target Defense, 35% Chance of Deadly Strike",
+		levelReq: 59,
+		ladderOnly: true,
+	},
+	{
+		name: "Breath of the Dying",
+		runes: ["Vex", "Hel", "El", "Eld", "Zod", "Eth"],
+		sockets: 6,
+		bases: [
+			"sword",
+			"axe",
+			"mace",
+			"hammer",
+			"scepter",
+			"polearm",
+			"spear",
+			"claw",
+			"bow",
+			"crossbow",
+			"staff",
+			"wand",
+			"orb",
+		],
+		description:
+			"50% Chance to Cast Level 20 Poison Nova When You Kill an Enemy, Indestructible, +60% Increased Attack Speed",
+		levelReq: 69,
+	},
+	{
+		name: "Call to Arms",
+		runes: ["Amn", "Ral", "Mal", "Ist", "Ohm"],
+		sockets: 5,
+		bases: [
+			"sword",
+			"axe",
+			"mace",
+			"hammer",
+			"scepter",
+			"polearm",
+			"spear",
+			"claw",
+			"bow",
+			"crossbow",
+			"staff",
+			"wand",
+			"orb",
+		],
+		description:
+			"+1 To All Skills, +40% Increased Attack Speed, +25% Faster Cast Rate, Adds 5-30 Fire Damage, Level 6 Battle Command, Level 6 Battle Orders, Level 4 Battle Cry",
+		levelReq: 57,
+	},
+	{
+		name: "Spirit",
+		runes: ["Tal", "Thul", "Ort", "Amn"],
+		sockets: 4,
+		bases: ["sword", "shield"],
+		description:
+			"+2 To All Skills, +25-35% Faster Cast Rate, +55% Faster Hit Recovery, Adds 1-50 Lightning Damage, Adds 3-14 Cold Damage",
+		levelReq: 25,
+	},
+	{
+		name: "Insight",
+		runes: ["Ral", "Tir", "Tal", "Sol"],
+		sockets: 4,
+		bases: ["polearm", "staff"],
+		description:
+			"Level 12-17 Meditation Aura, +35% Faster Cast Rate, +200-260% Enhanced Damage, +9 To Minimum Damage",
+		levelReq: 27,
+	},
+	{
+		name: "Fortitude",
+		runes: ["El", "Sol", "Dol", "Lo"],
+		sockets: 4,
+		bases: [
+			"armor",
+			"sword",
+			"axe",
+			"mace",
+			"hammer",
+			"scepter",
+			"polearm",
+			"spear",
+			"claw",
+			"bow",
+			"crossbow",
+			"staff",
+			"wand",
+			"orb",
+		],
+		description:
+			"20% Chance to Cast Level 15 Chilling Armor when Struck, +25% Faster Cast Rate, 300% Enhanced Damage, +200% Enhanced Defense, All Resistances +25-30",
+		levelReq: 59,
+		ladderOnly: true,
+	},
+	{
+		name: "Chains of Honor",
+		runes: ["Dol", "Um", "Ber", "Ist"],
+		sockets: 4,
+		bases: ["armor"],
+		description:
+			"+2 To All Skills, +70% Enhanced Damage, +20 To Strength, All Resistances +65, 8% Life Stolen Per Hit, 25% Better Chance of Getting Magic Items",
+		levelReq: 63,
+		ladderOnly: true,
+	},
+	{
+		name: "Lore",
+		runes: ["Ort", "Sol"],
+		sockets: 2,
+		bases: ["helm"],
+		description:
+			"+1 To All Skills, +10 To Energy, Lightning Resist +30%, Damage Reduced By 7",
+		levelReq: 27,
+	},
+	{
+		name: "Stealth",
+		runes: ["Tal", "Eth"],
+		sockets: 2,
+		bases: ["armor"],
+		description:
+			"+25% Faster Run/Walk, +25% Faster Cast Rate, +25% Faster Hit Recovery, +6 To Dexterity, Regenerate Mana 15%",
+		levelReq: 17,
+	},
+	{
+		name: "Rhyme",
+		runes: ["Shael", "Eth"],
+		sockets: 2,
+		bases: ["shield"],
+		description:
+			"20% Increased Chance of Blocking, 40% Faster Block Rate, All Resistances +25, Cannot Be Frozen, 50% Extra Gold From Monsters, 25% Better Chance of Getting Magic Items",
+		levelReq: 29,
+	},
+];
