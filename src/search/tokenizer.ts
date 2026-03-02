@@ -1,4 +1,7 @@
-export type OsOp = "=" | ">=" | "<=" | ">" | "<";
+import { STATS } from "../data/tags";
+import type { Stat } from "../types";
+
+export type NumOp = "=" | ">=" | "<=" | ">" | "<";
 
 export type Token =
 	| { type: "WORD"; value: string }
@@ -6,9 +9,16 @@ export type Token =
 	| { type: "LPAREN" }
 	| { type: "RPAREN" }
 	| { type: "MINUS" }
-	| { type: "OS_EXPR"; op: OsOp; value: number }
+	| { type: "NUM_EXPR"; field: Stat; op: NumOp; value: number }
 	| { type: "HAS"; value: string }
 	| { type: "BASE_EXPR"; value: string };
+
+// num expressions — os:4, os>=4, lvl<=20, str>=25, dex:15, etc.
+const numPrefixes: Array<[string, Stat]> = [
+	["os", "sockets"],
+	["lvl", "level"],
+	...STATS.map((s): [Stat, Stat] => [s, s]),
+];
 
 export function tokenize(input: string): Token[] {
 	const tokens: Token[] = [];
@@ -39,18 +49,24 @@ export function tokenize(input: string): Token[] {
 			continue;
 		}
 
-		// os: expressions — os:4, os>=4, os<=3, os>4, os<4, os=4
-		if (input.slice(i).toLowerCase().startsWith("os")) {
-			const rest = input.slice(i + 2);
-			const opMatch = rest.match(/^(>=|<=|>|<|:|=)(\d+)/);
-			if (opMatch) {
-				const rawOp = opMatch[1];
-				const op: OsOp = rawOp === ":" ? "=" : (rawOp as OsOp);
-				const value = parseInt(opMatch[2], 10);
-				tokens.push({ type: "OS_EXPR", op, value });
-				i += 2 + opMatch[0].length;
-				continue;
+		let matchedNum = false;
+		for (const [prefix, field] of numPrefixes) {
+			if (input.slice(i).toLowerCase().startsWith(prefix)) {
+				const rest = input.slice(i + prefix.length);
+				const opMatch = rest.match(/^(>=|<=|>|<|:|=)(\d+)/);
+				if (opMatch) {
+					const rawOp = opMatch[1];
+					const op: NumOp = rawOp === ":" ? "=" : (rawOp as NumOp);
+					const value = parseInt(opMatch[2], 10);
+					tokens.push({ type: "NUM_EXPR", field, op, value });
+					i += prefix.length + opMatch[0].length;
+					matchedNum = true;
+					break;
+				}
 			}
+		}
+		if (matchedNum) {
+			continue;
 		}
 
 		// base: expressions — base:sword, base:melee

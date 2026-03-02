@@ -1,5 +1,5 @@
-import type { ASTNode, ASTOSNode } from "../search/parser";
-import type { BaseCategory } from "../types";
+import type { ASTNode, ASTNumNode } from "../search/parser";
+import type { BaseCategory, Stat } from "../types";
 
 type Props = {
 	ast: ASTNode | null;
@@ -30,8 +30,8 @@ export const ASTText = (props: Props): string => {
 			return `cannot ${baseString(ast.child.value)}`;
 		}
 
-		if (ast.child.type === "OS_EXPR") {
-			return `does not need ${openSocketString(ast.child)}`;
+		if (ast.child.type === "NUM_EXPR") {
+			return numExprString(ast.child, true);
 		}
 
 		if (ast.child.type === "KEYWORD") {
@@ -68,19 +68,22 @@ export const ASTText = (props: Props): string => {
 
 	if (ast.type === "HAS") {
 		if (ast.value === "fcr") {
-			return "gives Faster Cast Rate";
+			return "has Faster Cast Rate";
 		}
 		if (ast.value === "ias") {
-			return "gives Increased Attack Speed";
+			return "has Increased Attack Speed";
 		}
 		if (ast.value === "ed") {
-			return "gives Enhanced Damage";
+			return "has Enhanced Damage";
 		}
 		if (ast.value === "aura") {
 			return "grants an aura";
 		}
 		if (ast.value === "mf") {
 			return "has Magic Find";
+		}
+		if (ast.value === "gf") {
+			return "has Gold Find";
 		}
 	}
 
@@ -92,8 +95,8 @@ export const ASTText = (props: Props): string => {
 		return `can ${baseString(ast.value)}`;
 	}
 
-	if (ast.type === "OS_EXPR") {
-		return `needs ${openSocketString(ast)}`;
+	if (ast.type === "NUM_EXPR") {
+		return numExprString(ast);
 	}
 
 	if (ast.type === "KEYWORD") {
@@ -109,7 +112,8 @@ export const ASTText = (props: Props): string => {
 		}
 	}
 
-	return JSON.stringify(ast);
+	const { type, value = "", ...rest } = ast as any;
+	return `${type.toLowerCase()} ${value} ${rest && Object.keys(rest).length > 0 ? JSON.stringify(rest) : ""}`;
 };
 
 function baseArticled(base: BaseCategory) {
@@ -120,25 +124,37 @@ function baseString(base: BaseCategory) {
 	return `be made in ${baseArticled(base)}`;
 }
 
-function openSocketString(ast: ASTOSNode) {
+function numExprString(ast: ASTNumNode, negated = false) {
 	let qual: string;
-	switch (ast.op) {
-		case "=":
-			qual = "exactly";
-			break;
-		case ">":
-			qual = "more than";
-			break;
-		case "<":
-			qual = "less than";
-			break;
-		case ">=":
-			qual = "at least";
-			break;
-		case "<=":
-			qual = "at most";
-			break;
+	if (ast.op === "=") {
+		qual = "exactly";
+	} else if (ast.op === ">") {
+		qual = "more than";
+	} else if (ast.op === "<") {
+		qual = "less than";
+	} else if (ast.op === ">=") {
+		qual = "at least";
+	} else {
+		qual = "at most";
 	}
 
-	return `${qual} ${ast.value} open socket${ast.value === 1 ? "" : "s"}`;
+	if (ast.field === "sockets") {
+		const verb = negated ? "does not need" : "needs";
+		return `${verb} ${qual} ${ast.value} open socket${ast.value === 1 ? "" : "s"}`;
+	}
+
+	if (ast.field === "level") {
+		const verb = negated ? "does not require" : "requires";
+		return `${verb} ${qual} level ${ast.value}`;
+	}
+
+	const statLabel: Partial<Record<Stat, string>> = {
+		str: "Strength",
+		dex: "Dexterity",
+		vit: "Vitality",
+		ene: "Energy",
+		ow: "chance of Open Wounds",
+	};
+	const verb = negated ? "does not give" : "gives";
+	return `${verb} ${qual} ${ast.value} ${statLabel[ast.field] ?? ast.field}`;
 }

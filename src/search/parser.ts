@@ -1,9 +1,14 @@
 import { strToBase, strToRune } from "../data/runes";
 import { stringToTag } from "../data/tags";
-import type { BaseCategory, BoolFilter, Rune, Tag } from "../types";
-import type { Token, OsOp } from "./tokenizer";
+import type { BaseCategory, BoolFilter, Rune, Stat, Tag } from "../types";
+import type { Token, NumOp } from "./tokenizer";
 
-export type ASTOSNode = { type: "OS_EXPR"; op: OsOp; value: number };
+export type ASTNumNode = {
+	type: "NUM_EXPR";
+	field: Stat;
+	op: NumOp;
+	value: number;
+};
 
 export type ASTNode =
 	| { type: "AND"; children: ASTNode[] }
@@ -11,7 +16,7 @@ export type ASTNode =
 	| { type: "NOT"; child: ASTNode }
 	| { type: "KEYWORD"; value: string }
 	| { type: "HAS"; value: Tag }
-	| ASTOSNode
+	| ASTNumNode
 	| { type: "RUNE"; value: Rune }
 	| { type: "BOOL"; value: BoolFilter }
 	| { type: "BASE_EXPR"; value: BaseCategory };
@@ -69,7 +74,7 @@ class Parser {
 		return this.parsePrimary();
 	}
 
-	// primary := '(' orExpr ')' | OS_EXPR | BASE_EXPR | WORD
+	// primary := '(' orExpr ')' | NUM_EXPR | BASE_EXPR | WORD
 	private parsePrimary(): ASTNode {
 		const tok = this.peek();
 		if (tok === null) {
@@ -85,9 +90,14 @@ class Parser {
 			return inner;
 		}
 
-		if (tok.type === "OS_EXPR") {
+		if (tok.type === "NUM_EXPR") {
 			this.consume();
-			return { type: "OS_EXPR", op: tok.op, value: tok.value };
+			return {
+				type: "NUM_EXPR",
+				field: tok.field,
+				op: tok.op,
+				value: tok.value,
+			};
 		}
 
 		if (tok.type === "BASE_EXPR") {
@@ -124,7 +134,7 @@ class Parser {
 			this.consume();
 			const tag = stringToTag(tok.value);
 			if (!tag) {
-				throw new Error(`oh no bad tag`);
+				throw new Error(`oh no bad tag found for ${tok.value}`);
 			}
 			return {
 				type: "HAS",

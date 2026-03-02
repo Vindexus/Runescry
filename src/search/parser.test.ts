@@ -41,11 +41,39 @@ describe("parse", () => {
 		expect(parseQuery("has:fcr")).toEqual({ type: "HAS", value: "fcr" });
 	});
 
-	it("parses os: as OS_EXPR node", () => {
+	it("parses fcr comparison", () => {
+		expect(parseQuery("fcr>=65")).toEqual({
+			type: "NUM_EXPR",
+			field: "fcr",
+			value: 65,
+			op: ">=",
+		});
+	});
+
+	it("parses os: as NUM_EXPR node with sockets field", () => {
 		expect(parseQuery("os:4")).toEqual({
-			type: "OS_EXPR",
+			type: "NUM_EXPR",
+			field: "sockets",
 			op: "=",
 			value: 4,
+		});
+	});
+
+	it("parses lvl: as NUM_EXPR node with level field", () => {
+		expect(parseQuery("lvl:65")).toEqual({
+			type: "NUM_EXPR",
+			field: "level",
+			op: "=",
+			value: 65,
+		});
+	});
+
+	it("parses lvl<= as NUM_EXPR node with level field", () => {
+		expect(parseQuery("lvl<=30")).toEqual({
+			type: "NUM_EXPR",
+			field: "level",
+			op: "<=",
+			value: 30,
 		});
 	});
 

@@ -55,31 +55,49 @@ describe("tokenize", () => {
 
 	it("tokenizes os: with colon as equality", () => {
 		expect(tokenize("os:4")).toEqual([
-			{ type: "OS_EXPR", op: "=", value: 4 },
+			{ type: "NUM_EXPR", field: "sockets", op: "=", value: 4 },
 		]);
 	});
 
 	it("tokenizes os>= expression", () => {
 		expect(tokenize("os>=3")).toEqual([
-			{ type: "OS_EXPR", op: ">=", value: 3 },
+			{ type: "NUM_EXPR", field: "sockets", op: ">=", value: 3 },
 		]);
 	});
 
 	it("tokenizes os<= expression", () => {
 		expect(tokenize("os<=2")).toEqual([
-			{ type: "OS_EXPR", op: "<=", value: 2 },
+			{ type: "NUM_EXPR", field: "sockets", op: "<=", value: 2 },
 		]);
 	});
 
 	it("tokenizes os> expression", () => {
 		expect(tokenize("os>4")).toEqual([
-			{ type: "OS_EXPR", op: ">", value: 4 },
+			{ type: "NUM_EXPR", field: "sockets", op: ">", value: 4 },
 		]);
 	});
 
 	it("tokenizes os< expression", () => {
 		expect(tokenize("os<4")).toEqual([
-			{ type: "OS_EXPR", op: "<", value: 4 },
+			{ type: "NUM_EXPR", field: "sockets", op: "<", value: 4 },
+		]);
+	});
+
+	it("tokenizes lvl: with colon as equality", () => {
+		expect(tokenize("lvl:65")).toEqual([
+			{ type: "NUM_EXPR", field: "level", op: "=", value: 65 },
+		]);
+	});
+
+	it("tokenizes lvl<= expression", () => {
+		expect(tokenize("lvl<=30")).toEqual([
+			{ type: "NUM_EXPR", field: "level", op: "<=", value: 30 },
+		]);
+	});
+
+	it("tokenizes lvl>= expression", () => {
+		expect(tokenize("lvl>=25")).toEqual([
+			{ type: "NUM_EXPR", field: "level", op: ">=", value: 25 },
 		]);
 	});
 

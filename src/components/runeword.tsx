@@ -31,6 +31,10 @@ export const RunewordLI = ({ rw }: { rw: Runeword }) => {
 					<div className="rw-bases">{rw.bases.join(", ")}</div>
 					<div>Req level {rw.level}</div>
 					<div>Rune score {rw.value.toLocaleString()}</div>
+					<div style={{ display: "none" }}>
+						<pre>{JSON.stringify(rw.tags, null, 2)}</pre>
+						<pre>{JSON.stringify(rw.stats, null, 2)}</pre>
+					</div>
 				</div>
 				<div className="rw-desc">
 					{rw.attributes.map((a) => (

@@ -1,7 +1,15 @@
 import type { ASTNode } from "./parser";
-import type { BaseCategory, BoolFilter, Rune, Runeword } from "../types";
+import type {
+	BaseCategory,
+	BoolFilter,
+	Rune,
+	Runeword,
+	Stat,
+	StatRange,
+} from "../types";
 import { BASE_CATEGORY_MEMBERS, getLeafBases } from "../data/bases";
 import { matchTag, stringToTag } from "../data/tags";
+import type { NumOp } from "./tokenizer";
 
 function matchBase(runeword: Runeword, value: string): boolean {
 	if (!(value in BASE_CATEGORY_MEMBERS)) {
@@ -58,25 +66,44 @@ export function matchNode(runeword: Runeword, node: ASTNode): boolean {
 			return matchTag(runeword, tag);
 		}
 		throw new Error(`Has got bad tag: ${node.value}`);
-	} else if (node.type === "OS_EXPR") {
-		const s = runeword.runes.length;
-		const v = node.value;
-		if (node.op === "=") {
-			return s === v;
-		} else if (node.op === ">") {
-			return s > v;
-		} else if (node.op === "<") {
-			return s < v;
-		} else if (node.op === ">=") {
-			return s >= v;
-		} else if (node.op === "<=") {
-			return s <= v;
+	} else if (node.type === "NUM_EXPR") {
+		let range: [number, number] = [0, 0];
+		const rwStat = runeword.stats[node.field as Stat];
+		if (typeof rwStat === "number") {
+			range = [rwStat, rwStat];
+		} else if (
+			Array.isArray(rwStat) &&
+			typeof rwStat[0] === "number" &&
+			typeof rwStat[1] === "number"
+		) {
+			range = [rwStat[0], rwStat[1]];
 		} else {
-			throw new Error(`Unexpected operator: ${node.op}`);
+			return false;
 		}
+
+		return matchNumberRange(range, node.op, node.value);
 	} else if (node.type === "BASE_EXPR") {
 		return matchBase(runeword, node.value);
 	} else {
 		throw new Error(`Unexpected node type: ${(node as ASTNode).type}`);
 	}
+}
+
+function matchNumberRange(range: StatRange, op: NumOp, comparitor: number) {
+	if (op === "=") {
+		return range[0] === comparitor && range[1] === comparitor;
+	}
+	if (op === "<") {
+		return range[1] < comparitor;
+	}
+	if (op === "<=") {
+		return range[1] <= comparitor;
+	}
+	if (op === ">") {
+		return range[0] > comparitor || range[1] > comparitor;
+	}
+	if (op === ">=") {
+		return range[0] >= comparitor || range[1] >= comparitor;
+	}
+	return false;
 }
