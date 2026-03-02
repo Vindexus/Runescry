@@ -76,7 +76,7 @@ function App() {
 							type="text"
 							name="query"
 							className="search-input"
-							placeholder="e.g. has:ed os>=3 (base:sword or base:hammer) -jah amn"
+							placeholder='e.g. "fire resistance" has:ed os>=3 (base:sword or base:hammer) -jah'
 							defaultValue={query}
 							key={query}
 							autoFocus

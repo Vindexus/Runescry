@@ -80,6 +80,23 @@ export function tokenize(input: string): Token[] {
 			continue;
 		}
 
+		// Quoted phrase — treat everything inside quotes as a single keyword
+		if (input[i] === '"') {
+			i++; // skip opening quote
+			let phrase = "";
+			while (i < input.length && input[i] !== '"') {
+				phrase += input[i];
+				i++;
+			}
+			if (i < input.length) {
+				i++; // skip closing quote
+			}
+			if (phrase) {
+				tokens.push({ type: "WORD", value: phrase.toLowerCase() });
+			}
+			continue;
+		}
+
 		// Read a word (stops at whitespace, parens, or minus)
 		let word = "";
 		while (i < input.length && !/[\s()\-]/.test(input[i])) {
