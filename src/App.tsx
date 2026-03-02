@@ -36,7 +36,7 @@ function App() {
 	const filtered = ast
 		? RUNEWORDS.filter((rw) => matchNode(rw, ast))
 		: RUNEWORDS;
-	let finalDir: "asc" | "desc" = "asc";
+	let finalDir: "asc" | "desc" = direction as "asc" | "desc";
 	if (direction === "auto") {
 		finalDir = "asc";
 		if (sortBy === "level") {
@@ -86,7 +86,7 @@ function App() {
 							type="text"
 							name="query"
 							className="search-input"
-							placeholder='e.g. "fire resistance" has:ed os>=3 (base:sword or base:hammer) -jah'
+							placeholder="e.g. os>=3 (base:sword or base:hammer) -berI has:aura ias>10"
 							value={inputValue}
 							onChange={(e) => setInputValue(e.target.value)}
 							autoFocus

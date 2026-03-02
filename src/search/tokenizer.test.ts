@@ -145,4 +145,20 @@ describe("tokenize", () => {
 			{ type: "WORD", value: "fire resistance" },
 		]);
 	});
+
+	it("tokenizes resistance aliases to the correct stat field", () => {
+		const aliases: Array<[string, string]> = [
+			["fireres>=30", "fres"],
+			["coldres>=30", "cres"],
+			["lightres>=30", "lres"],
+			["lightningres>=30", "lres"],
+			["poisonres>=30", "pres"],
+			["psnres>=30", "pres"],
+		];
+		for (const [input, field] of aliases) {
+			expect(tokenize(input)).toEqual([
+				{ type: "NUM_EXPR", field, op: ">=", value: 30 },
+			]);
+		}
+	});
 });

@@ -17,6 +17,12 @@ export type Token =
 const numPrefixes: Array<[string, Stat]> = [
 	["os", "sockets"],
 	["lvl", "level"],
+	["fireres", "fres"],
+	["coldres", "cres"],
+	["lightningres", "lres"],
+	["lightres", "lres"],
+	["poisonres", "pres"],
+	["psnres", "pres"],
 	...STATS.map((s): [Stat, Stat] => [s, s]),
 ];
 

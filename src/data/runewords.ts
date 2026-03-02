@@ -13,8 +13,12 @@ function parseStatRange(
 	attributes: string[],
 	statName: string,
 ): StatRange | null {
-	const pattern = new RegExp(
+	const pattern1 = new RegExp(
 		`\\+?(\\d+|\\((\\d+)-(\\d+)\\))%? ${statName}\\b`,
+		"i",
+	);
+	const pattern2 = new RegExp(
+		`${statName} \\+(\\d+|\\((\\d+)-(\\d+)\\))%?`,
 		"i",
 	);
 	for (const attr of attributes) {
@@ -28,7 +32,7 @@ function parseStatRange(
 			}
 			continue;
 		}
-		const match = attr.match(pattern);
+		const match = attr.match(pattern1) ?? attr.match(pattern2);
 		if (match) {
 			if (match[2] && match[3]) {
 				return [parseInt(match[2], 10), parseInt(match[3], 10)];
@@ -38,6 +42,22 @@ function parseStatRange(
 		}
 	}
 	return null;
+}
+
+function addRanges(
+	a: StatRange | null,
+	b: StatRange | null,
+): StatRange | null {
+	if (!a && !b) {
+		return null;
+	}
+	if (!a) {
+		return b;
+	}
+	if (!b) {
+		return a;
+	}
+	return [a[0] + b[0], a[1] + b[1]];
 }
 
 export function rwDefToRuneword(d: RunewordDef): Runeword {
@@ -62,6 +82,17 @@ export function rwDefToRuneword(d: RunewordDef): Runeword {
 
 	const sockets = d.runes.length;
 
+	const allres = parseStatRange(d.attributes, "All Resistances");
+	const indivCres = parseStatRange(d.attributes, "Cold Resist");
+	const indivFres = parseStatRange(d.attributes, "Fire Resist");
+	const indivLres = parseStatRange(d.attributes, "Lightning Resist");
+	const indivPres = parseStatRange(d.attributes, "Poison Resist");
+	const cres = addRanges(indivCres, allres);
+	const fres = addRanges(indivFres, allres);
+	const lres = addRanges(indivLres, allres);
+	const pres = addRanges(indivPres, allres);
+	const res = addRanges(addRanges(cres, fres), addRanges(lres, pres));
+
 	const stats: Stats = {
 		str: parseStatRange(d.attributes, "to Strength"),
 		dex: parseStatRange(d.attributes, "to Dexterity"),
@@ -81,6 +112,12 @@ export function rwDefToRuneword(d: RunewordDef): Runeword {
 		ow: parseStatRange(d.attributes, "Chance of Open Wounds"),
 		life: parseStatRange(d.attributes, "to Life"),
 		mana: parseStatRange(d.attributes, "to mana"),
+		allres,
+		cres,
+		fres,
+		lres,
+		pres,
+		res,
 		level: [d.level, d.level],
 		sockets: [sockets, sockets],
 	};

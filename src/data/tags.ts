@@ -21,6 +21,12 @@ const statRec: Record<Stat, null> = {
 	ow: null,
 	life: null,
 	mana: null,
+	allres: null,
+	cres: null,
+	fres: null,
+	lres: null,
+	pres: null,
+	res: null,
 } as const;
 
 const tagReg: Record<Tag, null> = {

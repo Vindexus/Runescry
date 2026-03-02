@@ -130,6 +130,11 @@ class Parser {
 			const inner = this.parseOrExpr();
 			if (this.peek()?.type === "RPAREN") {
 				this.consume();
+			} else {
+				this.invalid.push({
+					expression: "(",
+					message: "Missing closing )",
+				});
 			}
 			return inner;
 		}

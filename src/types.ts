@@ -97,6 +97,12 @@ export type Stats = {
 	cb: null | StatRange;
 	life: null | StatRange;
 	mana: null | StatRange;
+	allres: null | StatRange;
+	cres: null | StatRange;
+	fres: null | StatRange;
+	lres: null | StatRange;
+	pres: null | StatRange;
+	res: null | StatRange;
 };
 
 export type Stat = keyof Stats;

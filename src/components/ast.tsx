@@ -160,6 +160,12 @@ function numExprString(ast: ASTNumNode, negated = false) {
 		vit: "Vitality",
 		ene: "Energy",
 		ow: "chance of Open Wounds",
+		allres: "All Resistances",
+		cres: "Cold Resist",
+		fres: "Fire Resist",
+		lres: "Lightning Resist",
+		pres: "Poison Resist",
+		res: "Total Resist",
 	};
 	const verb = negated ? "does not give" : "gives";
 	return `${verb} ${qual} ${ast.value} ${statLabel[ast.field] ?? ast.field}`;

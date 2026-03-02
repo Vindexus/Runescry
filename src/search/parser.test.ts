@@ -165,4 +165,12 @@ describe("parse", () => {
 		expect(result.parsed).not.toBeNull();
 		expect(result.invalid).toHaveLength(0);
 	});
+
+	it("records an error for an unclosed opening parenthesis", () => {
+		const result = parseResult("(coldres>10 or (psnres>20 psnres<70)");
+		expect(result.parsed).not.toBeNull();
+		expect(result.invalid).toHaveLength(1);
+		expect(result.invalid[0].expression).toBe("(");
+		expect(result.invalid[0].message).toContain("Missing closing )");
+	});
 });

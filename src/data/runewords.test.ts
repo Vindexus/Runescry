@@ -26,4 +26,28 @@ describe("runewords", () => {
 			gf: [1, 185],
 		});
 	});
+	it("Silence: allres +75 contributes to all individual resistances", () => {
+		const rw = RUNEWORDS.find((x) => x.name === "Silence");
+		expect(rw).toBeDefined();
+		expect(rw!.stats).toMatchObject({
+			allres: [75, 75],
+			cres: [75, 75],
+			fres: [75, 75],
+			lres: [75, 75],
+			pres: [75, 75],
+			res: [300, 300],
+		});
+	});
+	it("Duress: individual resistances sum correctly with no allres", () => {
+		const rw = RUNEWORDS.find((x) => x.name === "Duress");
+		expect(rw).toBeDefined();
+		expect(rw!.stats).toMatchObject({
+			allres: null,
+			cres: [45, 45],
+			fres: [15, 15],
+			lres: [15, 15],
+			pres: [15, 15],
+			res: [90, 90],
+		});
+	});
 });
