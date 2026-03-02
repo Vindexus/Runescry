@@ -1,4 +1,4 @@
-import { STATS } from "../data/tags";
+import { STATS, STAT_ALIASES } from "../data/tags";
 import type { Stat } from "../types";
 
 export type NumOp = "=" | ">=" | "<=" | ">" | "<";
@@ -17,12 +17,7 @@ export type Token =
 const numPrefixes: Array<[string, Stat]> = [
 	["os", "sockets"],
 	["lvl", "level"],
-	["fireres", "fres"],
-	["coldres", "cres"],
-	["lightningres", "lres"],
-	["lightres", "lres"],
-	["poisonres", "pres"],
-	["psnres", "pres"],
+	...(Object.entries(STAT_ALIASES) as Array<[string, Stat]>),
 	...STATS.map((s): [Stat, Stat] => [s, s]),
 ];
 

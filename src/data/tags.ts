@@ -37,12 +37,22 @@ const tagReg: Record<Tag, null> = {
 	cbf: null,
 } as const;
 
+export const STAT_ALIASES: Record<string, Stat> = {
+	fireres: "fres",
+	coldres: "cres",
+	lightningres: "lres",
+	lightres: "lres",
+	poisonres: "pres",
+	psnres: "pres",
+};
+
 export const STATS: Stat[] = Object.keys(statRec) as Stat[];
 
 export const TAGS: Tag[] = Object.keys(tagReg) as Tag[];
 
 export function stringToTag(str: string): Tag | null {
-	const check = str.trim().toLowerCase() as Tag;
+	const lower = str.trim().toLowerCase();
+	const check = (STAT_ALIASES[lower] ?? lower) as Tag;
 	if (!TAGS.includes(check)) {
 		return null;
 	}

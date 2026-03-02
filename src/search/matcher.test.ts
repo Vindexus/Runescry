@@ -215,4 +215,30 @@ describe("filterRunewords", () => {
 			expect(results.map((r) => r.name)).toEqual(["Destruction"]);
 		});
 	});
+
+	describe("stat aliases work in has: expressions", () => {
+		it("has:fireres finds the same runewords as has:fres", () => {
+			const byAlias = filterRunewords(RUNEWORDS, "has:fireres");
+			const byCanon = filterRunewords(RUNEWORDS, "has:fres");
+			expect(byAlias.map((r) => r.id)).toEqual(byCanon.map((r) => r.id));
+		});
+
+		it("has:coldres finds the same runewords as has:cres", () => {
+			const byAlias = filterRunewords(RUNEWORDS, "has:coldres");
+			const byCanon = filterRunewords(RUNEWORDS, "has:cres");
+			expect(byAlias.map((r) => r.id)).toEqual(byCanon.map((r) => r.id));
+		});
+
+		it("has:lightres finds the same runewords as has:lres", () => {
+			const byAlias = filterRunewords(RUNEWORDS, "has:lightres");
+			const byCanon = filterRunewords(RUNEWORDS, "has:lres");
+			expect(byAlias.map((r) => r.id)).toEqual(byCanon.map((r) => r.id));
+		});
+
+		it("has:psnres finds the same runewords as has:pres", () => {
+			const byAlias = filterRunewords(RUNEWORDS, "has:psnres");
+			const byCanon = filterRunewords(RUNEWORDS, "has:pres");
+			expect(byAlias.map((r) => r.id)).toEqual(byCanon.map((r) => r.id));
+		});
+	});
 });

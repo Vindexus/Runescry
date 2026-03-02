@@ -1,5 +1,5 @@
 import type { ASTNode, ASTNumNode } from "../search/parser";
-import type { BaseCategory, Stat } from "../types";
+import type { BaseCategory, Stat, Tag } from "../types";
 
 type Props = {
 	ast: ASTNode | null;
@@ -51,21 +51,8 @@ export const ASTText = (props: Props): string => {
 			if (ast.child.value === "aura") {
 				return "does not grant an aura";
 			}
-			if (ast.child.value === "mf") {
-				return "does not have Magic Find";
-			}
-			if (ast.child.value === "gf") {
-				return "does not have Gold Find";
-			}
-			if (ast.child.value === "itd") {
-				return "does not have Ignore Target's Defense";
-			}
-			if (ast.child.value === "pmh") {
-				return "does not have Prevent Monster Heal";
-			}
-			if (ast.child.value === "cbf") {
-				return "does not have Cannot Be Frozen";
-			}
+			const label = TAG_LABEL[ast.child.value as Tag] ?? ast.child.value;
+			return `does not have ${label}`;
 		}
 
 		if (ast.child.type === "BOOL") {
@@ -79,33 +66,11 @@ export const ASTText = (props: Props): string => {
 	}
 
 	if (ast.type === "HAS") {
-		if (ast.value === "fcr") {
-			return "has Faster Cast Rate";
-		}
-		if (ast.value === "ias") {
-			return "has Increased Attack Speed";
-		}
-		if (ast.value === "ed") {
-			return "has Enhanced Damage";
-		}
 		if (ast.value === "aura") {
 			return "grants an aura";
 		}
-		if (ast.value === "mf") {
-			return "has Magic Find";
-		}
-		if (ast.value === "gf") {
-			return "has Gold Find";
-		}
-		if (ast.value === "itd") {
-			return "has Ignore Target's Defense";
-		}
-		if (ast.value === "pmh") {
-			return "has Prevent Monster Heal";
-		}
-		if (ast.value === "cbf") {
-			return "has Cannot Be Frozen";
-		}
+		const label = TAG_LABEL[ast.value] ?? ast.value;
+		return `has ${label}`;
 	}
 
 	if (ast.type === "RUNE") {
@@ -135,6 +100,36 @@ export const ASTText = (props: Props): string => {
 
 	const { type, value = "", ...rest } = ast as any;
 	return `${type.toLowerCase()} ${value} ${rest && Object.keys(rest).length > 0 ? JSON.stringify(rest) : ""}`;
+};
+
+const TAG_LABEL: Partial<Record<Tag, string>> = {
+	fcr: "Faster Cast Rate",
+	ias: "Increased Attack Speed",
+	ed: "Enhanced Damage",
+	mf: "Magic Find",
+	gf: "Gold Find",
+	itd: "Ignore Target's Defense",
+	pmh: "Prevent Monster Heal",
+	cbf: "Cannot Be Frozen",
+	str: "Strength",
+	dex: "Dexterity",
+	vit: "Vitality",
+	ene: "Energy",
+	fhr: "Faster Hit Recovery",
+	frw: "Faster Run/Walk",
+	ll: "Life Leech",
+	ml: "Mana Leech",
+	ds: "Deadly Strike",
+	cb: "Crushing Blow",
+	ow: "Open Wounds",
+	life: "Life",
+	mana: "Mana",
+	allres: "All Resistances",
+	cres: "Cold Resist",
+	fres: "Fire Resist",
+	lres: "Lightning Resist",
+	pres: "Poison Resist",
+	res: "Total Resist",
 };
 
 const BASE_DISPLAY: Partial<Record<BaseCategory, string>> = {
