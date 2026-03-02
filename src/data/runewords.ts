@@ -85,6 +85,14 @@ export function rwDefToRuneword(d: RunewordDef): Runeword {
 		sockets: [sockets, sockets],
 	};
 
+	const allAttributes = parseStatRange(d.attributes, "to all attributes");
+	if (allAttributes) {
+		const atts: Stat[] = ["str", "dex", "ene", "vit"];
+		for (const stat of atts) {
+			stats[stat] = stats[stat] ?? allAttributes;
+		}
+	}
+
 	for (const ent of Object.entries(stats)) {
 		const stat = ent[0] as Stat;
 		const value = ent[1] as undefined | StatRange;
