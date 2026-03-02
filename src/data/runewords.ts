@@ -71,7 +71,10 @@ export function rwDefToRuneword(d: RunewordDef): Runeword {
 		tags.push("itd");
 	}
 	if (d.attributes.some((x) => x.match(/Cannot Be Frozen/))) {
-		tags.push("cb");
+		tags.push("cbf");
+	}
+	if (d.attributes.some((x) => x.match(/Prevent Monster Heal/))) {
+		tags.push("pmh");
 	}
 
 	const id =

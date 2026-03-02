@@ -159,7 +159,7 @@ function App() {
 						</div>
 						<div className="syntax-examples">
 							<code className="syntax-example">teleport</code>
-							<code className="syntax-example">"fire resistance"</code>
+							<code className="syntax-example">"enemy lightning res"</code>
 						</div>
 					</div>
 					<div className="syntax-section">

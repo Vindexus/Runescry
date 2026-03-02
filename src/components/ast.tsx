@@ -54,6 +54,18 @@ export const ASTText = (props: Props): string => {
 			if (ast.child.value === "mf") {
 				return "does not have Magic Find";
 			}
+			if (ast.child.value === "gf") {
+				return "does not have Gold Find";
+			}
+			if (ast.child.value === "itd") {
+				return "does not have Ignore Target's Defense";
+			}
+			if (ast.child.value === "pmh") {
+				return "does not have Prevent Monster Heal";
+			}
+			if (ast.child.value === "cbf") {
+				return "does not have Cannot Be Frozen";
+			}
 		}
 
 		if (ast.child.type === "BOOL") {
@@ -84,6 +96,15 @@ export const ASTText = (props: Props): string => {
 		}
 		if (ast.value === "gf") {
 			return "has Gold Find";
+		}
+		if (ast.value === "itd") {
+			return "has Ignore Target's Defense";
+		}
+		if (ast.value === "pmh") {
+			return "has Prevent Monster Heal";
+		}
+		if (ast.value === "cbf") {
+			return "has Cannot Be Frozen";
 		}
 	}
 
