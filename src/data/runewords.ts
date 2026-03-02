@@ -1883,7 +1883,7 @@ export const RUNEWORDS: Runeword[] = defs.map((d) => {
 	if (d.attributes.some((x) => x.match(/Increased Attack Speed/))) {
 		tags.push("ias");
 	}
-	if (d.attributes.some((x) => x.match(/\\% Enhanced Damage/))) {
+	if (d.attributes.some((x) => x.match(/Enhanced Damage/))) {
 		tags.push("ed");
 	}
 	if (d.attributes.some((x) => x.match(/Aura When Equipped/))) {
