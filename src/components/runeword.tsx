@@ -30,7 +30,7 @@ export const RunewordLI = ({ rw }: { rw: Runeword }) => {
 					<div>{rw.runes.length} sockets</div>
 					<div className="rw-bases">{rw.bases.join(", ")}</div>
 					<div>Req level {rw.level}</div>
-					<div>Rune Value {rw.value}</div>
+					<div>Rune score {rw.value.toLocaleString()}</div>
 				</div>
 				<div className="rw-desc">
 					{rw.attributes.map((a) => (
