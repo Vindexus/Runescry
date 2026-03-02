@@ -6,6 +6,8 @@ import { useQueryState } from "nuqs";
 import { parseAsString } from "nuqs";
 import { parse } from "./search/parser";
 import { tokenize } from "./search/tokenizer";
+import { RunewordLI } from "./components/runeword";
+import { ASTText } from "./components/ast";
 
 function App() {
 	const [query, setQuery] = useQueryState(
@@ -14,7 +16,10 @@ function App() {
 	);
 	const tokens = tokenize(query);
 	const ast = parse(tokens);
-	const results = ast ? RUNEWORDS.filter((rw) => matchNode(rw, ast)) : [];
+	const results = ast
+		? RUNEWORDS.filter((rw) => matchNode(rw, ast))
+		: RUNEWORDS;
+	console.log("results", results);
 
 	const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -43,34 +48,20 @@ function App() {
 				</form>
 			</div>
 
-			<div>
-				{ast ? <pre>{JSON.stringify(ast, null, 2)}</pre> : <p>Invalid query</p>}
-			</div>
-
 			<div className="results-meta">
-				{query.trim()
-					? `${results.length} result${results.length !== 1 ? "s" : ""}`
-					: `${RUNEWORDS.length} runewords`}
+				{results.length} result{results.length !== 1 ? "s" : ""}
+				{ast && (
+					<span>
+						{" "}
+						where <ASTText ast={ast} />
+					</span>
+				)}
 			</div>
 
 			<ul className="results">
-				{results.map((rw) => (
-					<li key={rw.name} className="card">
-						<div className="card-header">
-							<span className="rw-name">{rw.name}</span>
-							<span className="rw-runes">{rw.runes.join(" + ")}</span>
-							{rw.ladderOnly && <span className="badge-ladder">Ladder</span>}
-						</div>
-						<div className="card-meta">
-							<span>{rw.sockets} sockets</span>
-							<span>·</span>
-							<span className="rw-bases">{rw.bases.join(", ")}</span>
-							<span>·</span>
-							<span>Req level {rw.levelReq}</span>
-						</div>
-						<p className="rw-desc">{rw.description}</p>
-					</li>
-				))}
+				{results.map((rw) => {
+					return <RunewordLI key={rw.name} rw={rw} />;
+				})}
 			</ul>
 
 			{results.length === 0 && (

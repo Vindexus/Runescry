@@ -60,7 +60,9 @@ export function tokenize(input: string): Token[] {
         value += input[i];
         i++;
       }
-      if (value) tokens.push({ type: 'BASE_EXPR', value: value.toLowerCase() });
+      if (value) {
+        tokens.push({ type: 'BASE_EXPR', value: value.toLowerCase() });
+      }
       continue;
     }
 

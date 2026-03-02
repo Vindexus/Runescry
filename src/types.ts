@@ -1,4 +1,11 @@
+export type BoolFilter = "ladder" | "rotw";
+
 export type BaseCategory =
+	// Category aliases (expand to multiple concrete types)
+	| "weapon" // all weapons
+	| "melee" // all melee weapons
+	| "ranged" // all ranged weapons
+	// Concrete weapon types
 	| "sword"
 	| "axe"
 	| "mace"
@@ -7,11 +14,14 @@ export type BaseCategory =
 	| "polearm"
 	| "spear"
 	| "claw"
+	| "dagger"
+	| "club"
 	| "bow"
 	| "crossbow"
 	| "staff"
 	| "wand"
 	| "orb"
+	// Armor / other
 	| "helm"
 	| "armor" // body armor
 	| "shield"
@@ -57,9 +67,9 @@ export type Rune =
 export type Runeword = {
 	name: string;
 	runes: Rune[]; // e.g. ["Jah", "Ith", "Ber"]
-	sockets: number;
-	bases: BaseCategory[]; // item types this runeword can be made in
-	description: string; // notable properties, auras, skills
-	levelReq: number;
+	bases: BaseCategory[];
+	attributes: string[];
+	level: number;
 	ladderOnly?: boolean;
+	rotw?: boolean;
 };

@@ -1,12 +1,18 @@
+import { RUNES, strToBase, strToRune } from "../data/runes";
+import type { BaseCategory, BoolFilter, Rune } from "../types";
 import type { Token, OsOp } from "./tokenizer";
+
+export type ASTOSNode = { type: "OS_EXPR"; op: OsOp; value: number };
 
 export type ASTNode =
 	| { type: "AND"; children: ASTNode[] }
 	| { type: "OR"; children: ASTNode[] }
 	| { type: "NOT"; child: ASTNode }
 	| { type: "KEYWORD"; value: string }
-	| { type: "OS_EXPR"; op: OsOp; value: number }
-	| { type: "BASE_EXPR"; value: string };
+	| ASTOSNode
+	| { type: "RUNE"; value: Rune }
+	| { type: "BOOL"; value: BoolFilter }
+	| { type: "BASE_EXPR"; value: BaseCategory };
 
 type ParseResult = {
 	valid: ASTNode | null;
@@ -20,11 +26,16 @@ type ParseError = {
 
 class Parser {
 	private pos = 0;
+	private tokens: Token[] = [];
 
-	constructor(private tokens: Token[]) {}
+	constructor(tokens: Token[]) {
+		this.tokens = tokens;
+	}
 
 	parse(): ASTNode | null {
-		if (this.tokens.length === 0) return null;
+		if (this.tokens.length === 0) {
+			return null;
+		}
 		const node = this.parseOrExpr();
 		return node;
 	}
@@ -76,7 +87,9 @@ class Parser {
 		if (tok.type === "LPAREN") {
 			this.consume();
 			const inner = this.parseOrExpr();
-			if (this.peek()?.type === "RPAREN") this.consume();
+			if (this.peek()?.type === "RPAREN") {
+				this.consume();
+			}
 			return inner;
 		}
 
@@ -87,11 +100,31 @@ class Parser {
 
 		if (tok.type === "BASE_EXPR") {
 			this.consume();
-			return { type: "BASE_EXPR", value: tok.value };
+			const base = strToBase(tok.value);
+			return { type: "BASE_EXPR", value: base };
 		}
 
 		if (tok.type === "WORD") {
 			this.consume();
+			const rune = strToRune(tok.value);
+			if (rune) {
+				return {
+					type: "RUNE",
+					value: rune,
+				};
+			}
+			if (tok.value === "rotw") {
+				return {
+					type: "BOOL",
+					value: "rotw",
+				};
+			}
+			if (tok.value === "ladder") {
+				return {
+					type: "BOOL",
+					value: "ladder",
+				};
+			}
 			return { type: "KEYWORD", value: tok.value };
 		}
 
