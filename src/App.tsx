@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RUNEWORDS } from "./data/runewords";
 import { matchNode } from "./search/matcher";
 import "./App.css";
@@ -15,7 +15,12 @@ function App() {
 		clearOnDefault: true,
 		history: "push",
 	});
+	const [inputValue, setInputValue] = useState(query);
 	const [showSyntax, setShowSyntax] = useState(false);
+
+	useEffect(() => {
+		setInputValue(query);
+	}, [query]);
 	const [sortBy, setSortBy] = useQueryState("sort", {
 		defaultValue: "level",
 		clearOnDefault: true,
@@ -82,8 +87,8 @@ function App() {
 							name="query"
 							className="search-input"
 							placeholder='e.g. "fire resistance" has:ed os>=3 (base:sword or base:hammer) -jah'
-							defaultValue={query}
-							key={query}
+							value={inputValue}
+							onChange={(e) => setInputValue(e.target.value)}
 							autoFocus
 							spellCheck={false}
 							autoComplete="off"
@@ -192,9 +197,11 @@ function App() {
 						<div className="syntax-desc">Filter by special properties.</div>
 						<div className="syntax-examples">
 							<code className="syntax-example">has:aura</code>
+							<code className="syntax-example">has:mf</code>
 							<code className="syntax-example">has:itd</code>
 							<code className="syntax-example">has:cbf</code>
 							<code className="syntax-example">has:pmh</code>
+							<code className="syntax-example">has:str</code>
 						</div>
 					</div>
 					<div className="syntax-section">
