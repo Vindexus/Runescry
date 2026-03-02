@@ -79,4 +79,5 @@ export type Tag = "fcr" | "ias" | "aura" | "ed" | "mf";
 export type Runeword = Required<RunewordDef> & {
 	id: string;
 	tags: Tag[];
+	value: number;
 };

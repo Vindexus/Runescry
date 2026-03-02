@@ -1,7 +1,5 @@
 import type { ASTNode } from "./parser";
 import type { BaseCategory, BoolFilter, Rune, Runeword } from "../types";
-import { parse } from "./parser";
-import { tokenize } from "./tokenizer";
 import { BASE_CATEGORY_MEMBERS, getLeafBases } from "../data/bases";
 import { matchTag, stringToTag } from "../data/tags";
 
@@ -81,20 +79,4 @@ export function matchNode(runeword: Runeword, node: ASTNode): boolean {
 	} else {
 		throw new Error(`Unexpected node type: ${(node as ASTNode).type}`);
 	}
-}
-
-export function filterRunewords(
-	runewords: Runeword[],
-	query: string,
-): Runeword[] {
-	if (!query.trim()) {
-		return runewords;
-	}
-
-	const tokens = tokenize(query);
-	const ast = parse(tokens);
-	if (!ast) {
-		return runewords;
-	}
-	return runewords.filter((rw) => matchNode(rw, ast));
 }

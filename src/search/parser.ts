@@ -1,4 +1,4 @@
-import { RUNES, strToBase, strToRune } from "../data/runes";
+import { strToBase, strToRune } from "../data/runes";
 import { stringToTag } from "../data/tags";
 import type { BaseCategory, BoolFilter, Rune, Tag } from "../types";
 import type { Token, OsOp } from "./tokenizer";
@@ -15,16 +15,6 @@ export type ASTNode =
 	| { type: "RUNE"; value: Rune }
 	| { type: "BOOL"; value: BoolFilter }
 	| { type: "BASE_EXPR"; value: BaseCategory };
-
-type ParseResult = {
-	valid: ASTNode | null;
-	errors: ParseError[];
-};
-
-type ParseError = {
-	message: string;
-	token: Token | null;
-};
 
 class Parser {
 	private pos = 0;

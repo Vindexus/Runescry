@@ -1,4 +1,3 @@
-import React from "react";
 import type { ASTNode, ASTOSNode } from "../search/parser";
 import type { BaseCategory } from "../types";
 
@@ -49,10 +48,10 @@ export const ASTText = (props: Props): string => {
 			if (ast.child.value === "ed") {
 				return "does not give Enhanced Damage";
 			}
-			if (ast.child.value === "aura')") {
+			if (ast.child.value === "aura") {
 				return "does not grant an aura";
 			}
-			if (ast.child.value === "mf')") {
+			if (ast.child.value === "mf") {
 				return "does not have Magic Find";
 			}
 		}
@@ -77,10 +76,10 @@ export const ASTText = (props: Props): string => {
 		if (ast.value === "ed") {
 			return "gives Enhanced Damage";
 		}
-		if (ast.value === "aura')") {
+		if (ast.value === "aura") {
 			return "grants an aura";
 		}
-		if (ast.value === "mf')") {
+		if (ast.value === "mf") {
 			return "has Magic Find";
 		}
 	}

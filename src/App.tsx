@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { RUNEWORDS } from "./data/runewords";
-import { filterRunewords, matchNode } from "./search/matcher";
+import { matchNode } from "./search/matcher";
 import "./App.css";
 import { useQueryState } from "nuqs";
-import { parseAsString } from "nuqs";
 import { parse } from "./search/parser";
 import { tokenize } from "./search/tokenizer";
 import { RunewordLI } from "./components/runeword";
 import { ASTText } from "./components/ast";
+import type { Runeword } from "./types";
 
 function App() {
 	const [query, setQuery] = useQueryState("query", {
@@ -31,18 +31,13 @@ function App() {
 	const filtered = ast
 		? RUNEWORDS.filter((rw) => matchNode(rw, ast))
 		: RUNEWORDS;
-	console.log("direction", direction);
-	console.log("sortBy", sortBy);
 	const results = filtered.sort((a, b) => {
-		const val1 = a[sortBy as "level" | "name"];
-		const val2 = b[sortBy as "level" | "name"];
-		console.log("val1", val1);
-		console.log("val2", val2);
+		const val1 = a[sortBy as keyof Runeword];
+		const val2 = b[sortBy as keyof Runeword];
 		let lower = val1 < val2;
 		if (direction === "auto") {
 			if (sortBy === "value") {
 				lower = !lower;
-				console.log("xchange lower");
 			}
 		}
 		if (direction === "asc") {
@@ -63,7 +58,6 @@ function App() {
 
 	function submit() {
 		const form = document.getElementById("search-form") as HTMLFormElement;
-		console.log("form", form);
 		const data = Object.fromEntries(new FormData(form).entries()) as Record<
 			string,
 			string
