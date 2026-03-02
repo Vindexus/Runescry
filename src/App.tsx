@@ -31,16 +31,21 @@ function App() {
 	const filtered = ast
 		? RUNEWORDS.filter((rw) => matchNode(rw, ast))
 		: RUNEWORDS;
+	let finalDir: "asc" | "desc" = "asc";
+	if (direction === "auto") {
+		finalDir = "asc";
+		if (sortBy === "level") {
+			finalDir = "asc";
+		}
+		if (sortBy === "value") {
+			finalDir = "desc";
+		}
+	}
 	const results = filtered.sort((a, b) => {
 		const val1 = a[sortBy as keyof Runeword];
 		const val2 = b[sortBy as keyof Runeword];
-		let lower = val1 < val2;
-		if (direction === "auto") {
-			if (sortBy === "value") {
-				lower = !lower;
-			}
-		}
-		if (direction === "asc") {
+		const lower = val1 < val2;
+		if (finalDir === "asc") {
 			return lower ? -1 : 1;
 		}
 		return lower ? 1 : -1;
@@ -118,10 +123,11 @@ function App() {
 					<div className="syntax-section">
 						<div className="syntax-title">Keywords</div>
 						<div className="syntax-desc">
-							Match runeword name, rune names, or attributes.
+							Match runeword name, rune names, or attributes. Use quotes for
+							multi-word phrases.
 						</div>
 						<code className="syntax-example">teleport</code>
-						<code className="syntax-example">conviction</code>
+						<code className="syntax-example">"fire resistance"</code>
 					</div>
 					<div className="syntax-section">
 						<div className="syntax-title">Rune Filter</div>
