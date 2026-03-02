@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { getLeafBases } from "./bases";
+import { strToBase } from "./runes";
 
 describe("getLeafBases", () => {
 	it("returns itself for a leaf node", () => {
@@ -45,5 +46,16 @@ describe("getLeafBases", () => {
 
 	it("returns itself for armor leaf", () => {
 		expect(getLeafBases("armor")).toEqual(["armor"]);
+	});
+});
+
+describe("strToBase", () => {
+	it("maps 'armour' to 'armor'", () => {
+		expect(strToBase("armour")).toBe("armor");
+	});
+
+	it("passes through known bases unchanged", () => {
+		expect(strToBase("sword")).toBe("sword");
+		expect(strToBase("armor")).toBe("armor");
 	});
 });

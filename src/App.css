@@ -103,6 +103,64 @@ body {
 	border-color: #c8a84b;
 }
 
+.sort-controls .syntax-toggle {
+	background: none;
+	border: none;
+	border-radius: 0;
+	color: #5a5040;
+	font-size: 0.78rem;
+	cursor: pointer;
+	padding: 0;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	font-family: inherit;
+	margin-left: auto;
+}
+
+.sort-controls .syntax-toggle:hover {
+	color: #9a8560;
+}
+
+.errors {
+	background: #120a0a;
+	border: 1px solid #4a1a1a;
+	border-radius: 6px;
+	padding: 0.6rem 0.9rem;
+	margin-bottom: 0.75rem;
+}
+
+.errors-header {
+	font-size: 0.78rem;
+	color: #b04040;
+	margin-bottom: 0.4rem;
+}
+
+.errors-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.error-item {
+	display: flex;
+	align-items: baseline;
+	gap: 0.6rem;
+	font-size: 0.82rem;
+}
+
+.error-expression {
+	font-family: "Fira Code", "Cascadia Code", monospace;
+	text-decoration: line-through;
+	color: #7a4040;
+}
+
+.error-message {
+	color: #906060;
+}
+
 .syntax-guide {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -117,6 +175,12 @@ body {
 .syntax-section {
 	display: flex;
 	flex-direction: column;
+	gap: 0.3rem;
+}
+
+.syntax-examples {
+	display: flex;
+	flex-wrap: wrap;
 	gap: 0.3rem;
 }
 

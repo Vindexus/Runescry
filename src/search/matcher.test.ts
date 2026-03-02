@@ -9,15 +9,11 @@ function filterRunewords(runewords: Runeword[], query: string): Runeword[] {
 	if (!query.trim()) {
 		return runewords;
 	}
-	try {
-		const ast = parse(tokenize(query));
-		if (!ast) {
-			return runewords;
-		}
-		return runewords.filter((rw) => matchNode(rw, ast));
-	} catch {
+	const { parsed } = parse(tokenize(query));
+	if (!parsed) {
 		return runewords;
 	}
+	return runewords.filter((rw) => matchNode(rw, parsed));
 }
 
 function makeRuneword(overrides: Partial<Runeword>): Runeword {

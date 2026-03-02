@@ -3,12 +3,16 @@ import { parse } from "./parser";
 import { tokenize } from "./tokenizer";
 
 function parseQuery(query: string) {
+	return parse(tokenize(query)).parsed;
+}
+
+function parseResult(query: string) {
 	return parse(tokenize(query));
 }
 
 describe("parse", () => {
-	it("returns null for empty token list", () => {
-		expect(parse([])).toBeNull();
+	it("returns null parsed for empty token list", () => {
+		expect(parse([]).parsed).toBeNull();
 	});
 
 	it("parses a rune name as a RUNE node", () => {
@@ -118,5 +122,47 @@ describe("parse", () => {
 				{ type: "BASE_EXPR", value: "armor" },
 			],
 		});
+	});
+
+	it("partially parses valid has: and records invalid has: as an error", () => {
+		const result = parseResult("has:ds has:solarpanels");
+		expect(result.parsed).toEqual({ type: "HAS", value: "ds" });
+		expect(result.invalid).toHaveLength(1);
+		expect(result.invalid[0].expression).toBe("has:solarpanels");
+		expect(result.invalid[0].message).toContain("solarpanels");
+	});
+
+	it("rejects os value above max (6)", () => {
+		const result = parseResult("os:7");
+		expect(result.parsed).toBeNull();
+		expect(result.invalid).toHaveLength(1);
+		expect(result.invalid[0].expression).toBe("os:7");
+	});
+
+	it("rejects os value below min (2)", () => {
+		const result = parseResult("os:1");
+		expect(result.parsed).toBeNull();
+		expect(result.invalid).toHaveLength(1);
+		expect(result.invalid[0].expression).toBe("os:1");
+	});
+
+	it("rejects lvl value above max (99)", () => {
+		const result = parseResult("lvl:100");
+		expect(result.parsed).toBeNull();
+		expect(result.invalid).toHaveLength(1);
+		expect(result.invalid[0].expression).toBe("lvl:100");
+	});
+
+	it("rejects lvl value below min (1)", () => {
+		const result = parseResult("lvl:0");
+		expect(result.parsed).toBeNull();
+		expect(result.invalid).toHaveLength(1);
+		expect(result.invalid[0].expression).toBe("lvl:0");
+	});
+
+	it("accepts os value within valid range", () => {
+		const result = parseResult("os:4");
+		expect(result.parsed).not.toBeNull();
+		expect(result.invalid).toHaveLength(0);
 	});
 });

@@ -21,64 +21,108 @@ export type ASTNode =
 	| { type: "BOOL"; value: BoolFilter }
 	| { type: "BASE_EXPR"; value: BaseCategory };
 
+export type InvalidExpression = {
+	expression: string;
+	message: string;
+};
+
+const NUM_FIELD_RANGES: Partial<Record<Stat, [number, number]>> = {
+	sockets: [2, 6],
+	level: [1, 99],
+};
+
+const NUM_FIELD_PREFIX: Partial<Record<Stat, string>> = {
+	sockets: "os",
+	level: "lvl",
+};
+
+const NUM_FIELD_LABEL: Partial<Record<Stat, string>> = {
+	sockets: "Open sockets",
+	level: "Required level",
+};
+
+export type ParseResult = {
+	parsed: ASTNode | null;
+	invalid: InvalidExpression[];
+};
+
 class Parser {
 	private pos = 0;
 	private tokens: Token[] = [];
+	private invalid: InvalidExpression[] = [];
 
 	constructor(tokens: Token[]) {
 		this.tokens = tokens;
 	}
 
-	parse(): ASTNode | null {
+	parse(): ParseResult {
 		if (this.tokens.length === 0) {
-			return null;
+			return { parsed: null, invalid: [] };
 		}
-		const node = this.parseOrExpr();
-		return node;
+		try {
+			const parsed = this.parseOrExpr();
+			return { parsed, invalid: this.invalid };
+		} catch {
+			return { parsed: null, invalid: this.invalid };
+		}
 	}
 
 	// orExpr := andExpr ('or' andExpr)*
-	private parseOrExpr(): ASTNode {
-		const children: ASTNode[] = [this.parseAndExpr()];
+	private parseOrExpr(): ASTNode | null {
+		const first = this.parseAndExpr();
+		const children: ASTNode[] = first ? [first] : [];
 
 		while (this.peek()?.type === "OR") {
 			this.consume();
-			children.push(this.parseAndExpr());
+			const next = this.parseAndExpr();
+			if (next) {
+				children.push(next);
+			}
 		}
 
+		if (children.length === 0) {
+			return null;
+		}
 		return children.length === 1 ? children[0] : { type: "OR", children };
 	}
 
 	// andExpr := unary (unary)*   — implicit AND; stops at OR or RPAREN
-	private parseAndExpr(): ASTNode {
+	private parseAndExpr(): ASTNode | null {
 		const children: ASTNode[] = [];
 
 		let tok = this.peek();
 		while (tok !== null && tok.type !== "OR" && tok.type !== "RPAREN") {
-			children.push(this.parseUnary());
+			const node = this.parseUnary();
+			if (node !== null) {
+				children.push(node);
+			}
 			tok = this.peek();
 		}
 
 		if (children.length === 0) {
-			throw new Error("Expected expression");
+			return null;
 		}
 		return children.length === 1 ? children[0] : { type: "AND", children };
 	}
 
 	// unary := '-' primary | primary
-	private parseUnary(): ASTNode {
+	private parseUnary(): ASTNode | null {
 		if (this.peek()?.type === "MINUS") {
 			this.consume();
-			return { type: "NOT", child: this.parsePrimary() };
+			const primary = this.parsePrimary();
+			if (primary === null) {
+				return null;
+			}
+			return { type: "NOT", child: primary };
 		}
 		return this.parsePrimary();
 	}
 
-	// primary := '(' orExpr ')' | NUM_EXPR | BASE_EXPR | WORD
-	private parsePrimary(): ASTNode {
+	// primary := '(' orExpr ')' | NUM_EXPR | BASE_EXPR | WORD | HAS
+	private parsePrimary(): ASTNode | null {
 		const tok = this.peek();
 		if (tok === null) {
-			throw new Error("Unexpected end of input");
+			return null;
 		}
 
 		if (tok.type === "LPAREN") {
@@ -92,6 +136,16 @@ class Parser {
 
 		if (tok.type === "NUM_EXPR") {
 			this.consume();
+			const range = NUM_FIELD_RANGES[tok.field];
+			if (range && (tok.value < range[0] || tok.value > range[1])) {
+				const prefix = NUM_FIELD_PREFIX[tok.field] ?? tok.field;
+				const op = tok.op === "=" ? ":" : tok.op;
+				this.invalid.push({
+					expression: `${prefix}${op}${tok.value}`,
+					message: `${NUM_FIELD_LABEL[tok.field] ?? tok.field} must be between ${range[0]} and ${range[1]}`,
+				});
+				return null;
+			}
 			return {
 				type: "NUM_EXPR",
 				field: tok.field,
@@ -134,7 +188,11 @@ class Parser {
 			this.consume();
 			const tag = stringToTag(tok.value);
 			if (!tag) {
-				throw new Error(`oh no bad tag found for ${tok.value}`);
+				this.invalid.push({
+					expression: `has:${tok.value}`,
+					message: `Unknown tag "${tok.value}"`,
+				});
+				return null;
 			}
 			return {
 				type: "HAS",
@@ -142,7 +200,12 @@ class Parser {
 			};
 		}
 
-		throw new Error(`Unexpected token: ${JSON.stringify(tok)}`);
+		this.consume();
+		this.invalid.push({
+			expression: JSON.stringify(tok),
+			message: `Unexpected token`,
+		});
+		return null;
 	}
 
 	private peek(): Token | null {
@@ -154,6 +217,6 @@ class Parser {
 	}
 }
 
-export function parse(tokens: Token[]): ASTNode | null {
+export function parse(tokens: Token[]): ParseResult {
 	return new Parser(tokens).parse();
 }

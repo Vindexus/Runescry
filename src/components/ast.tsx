@@ -116,8 +116,14 @@ export const ASTText = (props: Props): string => {
 	return `${type.toLowerCase()} ${value} ${rest && Object.keys(rest).length > 0 ? JSON.stringify(rest) : ""}`;
 };
 
+const BASE_DISPLAY: Partial<Record<BaseCategory, string>> = {
+	armor: "body armor",
+};
+
 function baseArticled(base: BaseCategory) {
-	return `a ${base}`;
+	const display = BASE_DISPLAY[base] ?? base;
+	const article = /^[aeiou]/i.test(display) ? "an" : "a";
+	return `${article} ${display}`;
 }
 
 function baseString(base: BaseCategory) {

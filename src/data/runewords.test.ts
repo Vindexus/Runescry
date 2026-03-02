@@ -6,7 +6,7 @@ describe("runewords", () => {
 		const rw = RUNEWORDS.find((x) => x.name === "Obsession");
 		expect(rw).toBeDefined();
 		expect(rw!.stats).toMatchObject({
-			str: undefined,
+			str: null,
 			vit: [10, 10],
 			mf: [30, 30],
 			fcr: [65, 65],

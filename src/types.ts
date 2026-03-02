@@ -94,7 +94,6 @@ export type Stats = {
 	ml: null | StatRange;
 	ds: null | StatRange;
 	ow: null | StatRange;
-	cs: null | StatRange;
 	cb: null | StatRange;
 	life: null | StatRange;
 	mana: null | StatRange;

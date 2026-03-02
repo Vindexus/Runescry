@@ -82,6 +82,10 @@ export function strToRune(str: string): Rune | null {
 	return null;
 }
 
+const BASE_ALIASES: Record<string, BaseCategory> = {
+	armour: "armor",
+};
+
 export function strToBase(str: string): BaseCategory {
-	return str as BaseCategory;
+	return (BASE_ALIASES[str] ?? str) as BaseCategory;
 }

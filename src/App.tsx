@@ -27,7 +27,7 @@ function App() {
 		history: "push",
 	});
 	const tokens = tokenize(query);
-	const ast = parse(tokens);
+	const { parsed: ast, invalid } = parse(tokens);
 	const filtered = ast
 		? RUNEWORDS.filter((rw) => matchNode(rw, ast))
 		: RUNEWORDS;
@@ -86,6 +86,10 @@ function App() {
 							key={query}
 							autoFocus
 							spellCheck={false}
+							autoComplete="off"
+							autoCorrect="off"
+							autoCapitalize="none"
+							enterKeyHint="search"
 						/>
 						<button type="submit">Go</button>
 					</div>
@@ -111,85 +115,131 @@ function App() {
 							<option value="asc">Asc</option>
 							<option value="desc">Desc</option>
 						</select>
-						<button type="button" onClick={() => setShowSyntax(!showSyntax)}>
-							Syntax Guide
+						<button
+							type="button"
+							className="syntax-toggle"
+							onClick={() => setShowSyntax(!showSyntax)}
+						>
+							{showSyntax ? "hide syntax" : "syntax guide"}
 						</button>
 					</div>
 				</form>
 			</div>
+
+			{invalid && invalid.length > 0 && (
+				<div className="errors">
+					{invalid.length > 1 && (
+						<div className="errors-header">Found {invalid.length} issues</div>
+					)}
+					<ul className="errors-list">
+						{invalid.map((x) => {
+							const key = x.expression + x.message;
+							return (
+								<li key={key} className="error-item">
+									<span className="error-expression">{x.expression}</span>
+									<span className="error-message">{x.message}</span>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			)}
 
 			{showSyntax && (
 				<div className="syntax-guide">
 					<div className="syntax-section">
 						<div className="syntax-title">Keywords</div>
 						<div className="syntax-desc">
-							Match runeword name, rune names, or attributes. Use quotes for
-							multi-word phrases.
+							Match name, runes, or attributes. Quotes for multi-word phrases.
 						</div>
-						<code className="syntax-example">teleport</code>
-						<code className="syntax-example">"fire resistance"</code>
+						<div className="syntax-examples">
+							<code className="syntax-example">teleport</code>
+							<code className="syntax-example">"fire resistance"</code>
+						</div>
 					</div>
 					<div className="syntax-section">
 						<div className="syntax-title">Rune Filter</div>
 						<div className="syntax-desc">
-							Find runewords containing a specific rune.
-							<br />
-							Use <span className="syntax-mono">-</span> to exclude.
+							Find runewords containing a rune. Prefix{" "}
+							<span className="syntax-mono">-</span> to exclude.
 						</div>
-						<code className="syntax-example">ist</code>
-						<code className="syntax-example">-jah</code>
+						<div className="syntax-examples">
+							<code className="syntax-example">ist</code>
+							<code className="syntax-example">-jah</code>
+						</div>
 					</div>
 					<div className="syntax-section">
 						<div className="syntax-title">
-							Base Filter — <span className="syntax-mono">base:</span>
+							Base — <span className="syntax-mono">base:</span>
 						</div>
 						<div className="syntax-desc">
-							Filter by item type. Categories expand automatically —{" "}
+							Filter by item type. Categories expand —{" "}
 							<span className="syntax-mono">base:melee</span> includes swords,
 							axes, etc.
 						</div>
-						<code className="syntax-example">base:sword</code>
-						<code className="syntax-example">base:melee</code>
-						<code className="syntax-example">base:weapon</code>
-						<code className="syntax-example">base:shield</code>
+						<div className="syntax-examples">
+							<code className="syntax-example">base:sword</code>
+							<code className="syntax-example">base:melee</code>
+							<code className="syntax-example">base:weapon</code>
+							<code className="syntax-example">base:shield</code>
+							<code className="syntax-example">base:armor</code>
+						</div>
 					</div>
 					<div className="syntax-section">
 						<div className="syntax-title">
-							Open Sockets — <span className="syntax-mono">os:</span>
+							Tags — <span className="syntax-mono">has:</span>
 						</div>
+						<div className="syntax-desc">Filter by special properties.</div>
+						<div className="syntax-examples">
+							<code className="syntax-example">has:aura</code>
+							<code className="syntax-example">has:itd</code>
+							<code className="syntax-example">has:cbf</code>
+							<code className="syntax-example">has:pmh</code>
+						</div>
+					</div>
+					<div className="syntax-section">
+						<div className="syntax-title">Number Expressions</div>
 						<div className="syntax-desc">
-							Filter by number of runes in the word.
+							Filter stats by value. Supports{" "}
+							<span className="syntax-mono">:</span>{" "}
+							<span className="syntax-mono">=</span>{" "}
+							<span className="syntax-mono">&gt;</span>{" "}
+							<span className="syntax-mono">&gt;=</span>{" "}
+							<span className="syntax-mono">&lt;</span>{" "}
+							<span className="syntax-mono">&lt;=</span>
 						</div>
-						<code className="syntax-example">os:4</code>
-						<code className="syntax-example">os&gt;=3</code>
-						<code className="syntax-example">os&lt;=2</code>
-					</div>
-					<div className="syntax-section">
-						<div className="syntax-title">
-							Tag Filter — <span className="syntax-mono">has:</span>
+						<div className="syntax-examples">
+							<code className="syntax-example">os:4</code>
+							<code className="syntax-example">lvl&lt;=65</code>
+							<code className="syntax-example">fcr&gt;=25</code>
+							<code className="syntax-example">ias:30</code>
+							<code className="syntax-example">fhr&gt;=10</code>
+							<code className="syntax-example">ll&gt;2</code>
+							<code className="syntax-example">str&lt;=40</code>
+							<code className="syntax-example">mf&gt;=50</code>
+							<code className="syntax-example">ed&gt;=200</code>
+							<code className="syntax-example">cb&gt;20</code>
 						</div>
-						<div className="syntax-desc">Filter by notable attribute tags.</div>
-						<code className="syntax-example">has:fcr</code>
-						<code className="syntax-example">has:ias</code>
-						<code className="syntax-example">has:aura</code>
-						<code className="syntax-example">has:mf</code>
 					</div>
 					<div className="syntax-section">
 						<div className="syntax-title">Flags</div>
 						<div className="syntax-desc">Filter by special flags.</div>
-						<code className="syntax-example">ladder</code>
-						<code className="syntax-example">rotw</code>
+						<div className="syntax-examples">
+							<code className="syntax-example">ladder</code>
+							<code className="syntax-example">rotw</code>
+						</div>
 					</div>
 					<div className="syntax-section">
 						<div className="syntax-title">Boolean Logic</div>
 						<div className="syntax-desc">
-							Combine filters. Space = AND, use{" "}
-							<span className="syntax-mono">or</span> for OR, prefix{" "}
-							<span className="syntax-mono">-</span> to negate.
+							Space = AND. Use <span className="syntax-mono">or</span> for OR,{" "}
+							<span className="syntax-mono">-</span> to negate, parens to group.
 						</div>
-						<code className="syntax-example">jah base:armor</code>
-						<code className="syntax-example">(ber or jah) -ladder</code>
-						<code className="syntax-example">base:melee -base:sword</code>
+						<div className="syntax-examples">
+							<code className="syntax-example">jah base:armor</code>
+							<code className="syntax-example">(ber or jah) -ladder</code>
+							<code className="syntax-example">base:melee -base:sword</code>
+						</div>
 					</div>
 				</div>
 			)}
