@@ -1,6 +1,7 @@
-import type { Runeword } from "../types";
+import type { Runeword, RunewordDef, Tag } from "../types";
+import { RUNE_VALUES } from "./runes";
 
-export const RUNEWORDS: Runeword[] = [
+export const defs: RunewordDef[] = [
 	{
 		name: "Breath of the Dying",
 		runes: ["Vex", "Hel", "El", "Eld", "Zod", "Eth"],
@@ -79,7 +80,7 @@ export const RUNEWORDS: Runeword[] = [
 			"Slows Target By 33%",
 			"Replenish Mana 16%",
 			"Cannot Be Frozen",
-			"30% Better Chance Of Getting Magic Items",
+			"30% Better Chance of Getting Magic Items",
 			"Level 8 Revive (88 Charges)",
 		],
 		ladderOnly: false,
@@ -1145,7 +1146,7 @@ export const RUNEWORDS: Runeword[] = [
 		ladderOnly: false,
 	},
 	{
-		name: "Myth (Barbarian)",
+		name: "Myth",
 		runes: ["Hel", "Amn", "Nef"],
 		bases: ["armor"],
 		level: 25,
@@ -1161,7 +1162,7 @@ export const RUNEWORDS: Runeword[] = [
 		ladderOnly: false,
 	},
 	{
-		name: "Peace (Amazon)",
+		name: "Peace",
 		runes: ["Shael", "Thul", "Amn"],
 		bases: ["armor"],
 		level: 29,
@@ -1266,12 +1267,11 @@ export const RUNEWORDS: Runeword[] = [
 		ladderOnly: false,
 	},
 	{
-		name: "Spirit",
+		name: "Spirit (Shield)",
 		runes: ["Tal", "Thul", "Ort", "Amn"],
-		bases: ["shield", "sword"],
+		bases: ["shield"],
 		level: 25,
 		attributes: [
-			"BOTH:",
 			"+2 To All Skills",
 			"+(25-35)% Faster Cast Rate",
 			"+55% Faster Hit Recovery",
@@ -1279,12 +1279,26 @@ export const RUNEWORDS: Runeword[] = [
 			"+22 To Vitality",
 			"+(89-112) To Mana",
 			"+(3-8) Magic Absorb",
-			"SHIELDS:",
 			"Cold Resist +35%",
 			"Lightning Resist +35%",
 			"Poison Resist +35%",
 			"Attacker Takes Damage of 14",
-			"SWORDS:",
+		],
+		ladderOnly: false,
+	},
+	{
+		name: "Spirit (Sword)",
+		runes: ["Tal", "Thul", "Ort", "Amn"],
+		bases: ["sword"],
+		level: 25,
+		attributes: [
+			"+2 To All Skills",
+			"+(25-35)% Faster Cast Rate",
+			"+55% Faster Hit Recovery",
+			"+250 Defense Vs. Missile",
+			"+22 To Vitality",
+			"+(89-112) To Mana",
+			"+(3-8) Magic Absorb",
 			"Adds 1-50 Lightning Damage",
 			"Adds 3-14 Cold Damage (3 Sec,Normal)",
 			"+75 Poison Damage Over 5 Seconds",
@@ -1588,7 +1602,7 @@ export const RUNEWORDS: Runeword[] = [
 			"+10 to Dexterity",
 			"WEAPONS:",
 			"5% Chance to Cast Level 1 Burst of Speed on Striking",
-			"Level 1 Fanaticism Aura",
+			"Level 1 Fanaticism Aura When Equipped",
 			"+30% Increased Attack Speed",
 			"+(180-200)% Enhanced Damage",
 			"+75% Damage to Undead",
@@ -1862,4 +1876,41 @@ export const RUNEWORDS: Runeword[] = [
 		],
 		ladderOnly: false,
 	},
-];
+] as const;
+
+export const RUNEWORDS: Runeword[] = defs.map((d) => {
+	const tags: Tag[] = [];
+	if (d.attributes.some((x) => x.match(/Increased Attack Speed/))) {
+		tags.push("ias");
+	}
+	if (d.attributes.some((x) => x.match(/\\% Enhanced Damage/))) {
+		tags.push("ed");
+	}
+	if (d.attributes.some((x) => x.match(/Aura When Equipped/))) {
+		tags.push("aura");
+	}
+
+	if (d.attributes.some((x) => x.match(/Faster Cast Rate/))) {
+		tags.push("fcr");
+	}
+	if (d.attributes.some((x) => x.match(/Getting Magic Items/))) {
+		tags.push("mf");
+	}
+
+	const id =
+		d.name
+			.toLowerCase()
+			.split(/[^\w]+/)
+			.join("_") + d.bases.join("_");
+
+	return {
+		...d,
+		rotw: !!d.rotw,
+		ladderOnly: !!d.ladderOnly,
+		id,
+		value: d.runes.reduce((acc, r) => {
+			return acc + RUNE_VALUES[r];
+		}, 0),
+		tags,
+	};
+});

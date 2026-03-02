@@ -19,3 +19,26 @@ if (condition) {
   doSomething();
 }
 ```
+
+## Use if/else if instead of switch statements
+
+Every `switch` statement should be written as an `if`/`else if` chain instead.
+
+**Wrong:**
+```ts
+switch (node.type) {
+  case "AND":
+    return doAnd();
+  case "OR":
+    return doOr();
+}
+```
+
+**Correct:**
+```ts
+if (node.type === "AND") {
+  return doAnd();
+} else if (node.type === "OR") {
+  return doOr();
+}
+```

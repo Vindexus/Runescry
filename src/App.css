@@ -40,7 +40,7 @@ body {
 	margin-bottom: 0.75rem;
 }
 
-.search-bar form {
+.search-bar form .text-container {
 	display: flex;
 	gap: 0.5rem;
 }
@@ -74,10 +74,91 @@ body {
 	color: #4a4030;
 }
 
+.sort-controls {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+}
+
+.sort-label {
+	font-size: 0.85rem;
+	color: #7a6f5a;
+}
+
+.sort-controls select {
+	background: #1a1a1a;
+	border: 1px solid #3a3020;
+	border-radius: 6px;
+	color: #d4c5a0;
+	font-size: 0.85rem;
+	font-family: inherit;
+	padding: 0.35rem 0.6rem;
+	cursor: pointer;
+	outline: none;
+	transition: border-color 150ms;
+}
+
+.sort-controls select:focus {
+	border-color: #c8a84b;
+}
+
+.syntax-guide {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 1rem;
+	background: #111009;
+	border: 1px solid #2a2418;
+	border-radius: 6px;
+	padding: 1rem;
+	margin-bottom: 0.75rem;
+}
+
+.syntax-section {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+.syntax-title {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #c8a84b;
+}
+
+.syntax-desc {
+	font-size: 0.75rem;
+	color: #6a6050;
+	line-height: 1.4;
+	margin-bottom: 0.15rem;
+}
+
+.syntax-example {
+	display: inline-block;
+	font-family: "Fira Code", "Cascadia Code", monospace;
+	font-size: 0.75rem;
+	background: #1a1a1a;
+	border: 1px solid #2a2418;
+	border-radius: 4px;
+	padding: 0.1rem 0.4rem;
+	color: #9a8560;
+	width: fit-content;
+}
+
+.syntax-mono {
+	font-family: "Fira Code", "Cascadia Code", monospace;
+	font-size: 0.8em;
+	color: #9a8560;
+}
+
 .results-meta {
 	font-size: 0.8rem;
 	color: #7a6f5a;
 	margin-bottom: 0.75rem;
+}
+
+.num-results {
+	color: #c8b48e;
 }
 
 .results {
@@ -174,4 +255,20 @@ body {
 	text-align: center;
 	color: #5a5040;
 	margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+	.card-body {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.results {
+		max-width: 480px;
+		margin: 0 auto;
+	}
+
+	.rw-desc {
+		margin-top: 1em;
+	}
 }

@@ -2,56 +2,8 @@ import type { ASTNode } from "./parser";
 import type { BaseCategory, BoolFilter, Rune, Runeword } from "../types";
 import { parse } from "./parser";
 import { tokenize } from "./tokenizer";
-
-// Each BaseCategory maps to its constituent leaf types (or itself if it is a leaf)
-const BASE_CATEGORY_MEMBERS: Record<BaseCategory, BaseCategory[]> = {
-	// Category nodes
-	weapon: ["melee", "ranged", "staff", "wand", "orb"],
-	melee: [
-		"sword",
-		"axe",
-		"mace",
-		"hammer",
-		"scepter",
-		"polearm",
-		"spear",
-		"claw",
-		"dagger",
-		"club",
-	],
-	ranged: ["bow", "crossbow"],
-	// Leaf nodes — concrete weapon types
-	sword: ["sword"],
-	axe: ["axe"],
-	mace: ["mace"],
-	hammer: ["hammer"],
-	scepter: ["scepter"],
-	polearm: ["polearm"],
-	spear: ["spear"],
-	claw: ["claw"],
-	dagger: ["dagger"],
-	club: ["club"],
-	bow: ["bow"],
-	crossbow: ["crossbow"],
-	staff: ["staff"],
-	wand: ["wand"],
-	orb: ["orb"],
-	// Leaf nodes — armor / other
-	helm: ["helm"],
-	armor: ["armor"],
-	shield: ["shield"],
-	gloves: ["gloves"],
-	boots: ["boots"],
-	belt: ["belt"],
-};
-
-function getLeafBases(cat: BaseCategory): BaseCategory[] {
-	const members = BASE_CATEGORY_MEMBERS[cat];
-	if (members.length === 1 && members[0] === cat) {
-		return members;
-	}
-	return members.flatMap(getLeafBases);
-}
+import { BASE_CATEGORY_MEMBERS, getLeafBases } from "../data/bases";
+import { matchTag, stringToTag } from "../data/tags";
 
 function matchBase(runeword: Runeword, value: string): boolean {
 	if (!(value in BASE_CATEGORY_MEMBERS)) {
@@ -90,39 +42,44 @@ function matchBool(runeword: Runeword, boolField: BoolFilter): boolean {
 }
 
 export function matchNode(runeword: Runeword, node: ASTNode): boolean {
-	switch (node.type) {
-		case "AND":
-			return node.children.every((child) => matchNode(runeword, child));
-		case "OR":
-			return node.children.some((child) => matchNode(runeword, child));
-		case "NOT":
-			return !matchNode(runeword, node.child);
-		case "KEYWORD":
-			return matchKeyword(runeword, node.value);
-		case "RUNE":
-			return matchRune(runeword, node.value);
-		case "BOOL":
-			return matchBool(runeword, node.value);
-		case "OS_EXPR": {
-			const s = runeword.runes.length;
-			const v = node.value;
-			switch (node.op) {
-				case "=":
-					return s === v;
-				case ">":
-					return s > v;
-				case "<":
-					return s < v;
-				case ">=":
-					return s >= v;
-				case "<=":
-					return s <= v;
-				default:
-					throw new Error(`Unexpected operator: ${node.op}`);
-			}
+	if (node.type === "AND") {
+		return node.children.every((child) => matchNode(runeword, child));
+	} else if (node.type === "OR") {
+		return node.children.some((child) => matchNode(runeword, child));
+	} else if (node.type === "NOT") {
+		return !matchNode(runeword, node.child);
+	} else if (node.type === "KEYWORD") {
+		return matchKeyword(runeword, node.value);
+	} else if (node.type === "RUNE") {
+		return matchRune(runeword, node.value);
+	} else if (node.type === "BOOL") {
+		return matchBool(runeword, node.value);
+	} else if (node.type === "HAS") {
+		const tag = stringToTag(node.value);
+		if (tag) {
+			return matchTag(runeword, tag);
 		}
-		case "BASE_EXPR":
-			return matchBase(runeword, node.value);
+		throw new Error(`Has got bad tag: ${node.value}`);
+	} else if (node.type === "OS_EXPR") {
+		const s = runeword.runes.length;
+		const v = node.value;
+		if (node.op === "=") {
+			return s === v;
+		} else if (node.op === ">") {
+			return s > v;
+		} else if (node.op === "<") {
+			return s < v;
+		} else if (node.op === ">=") {
+			return s >= v;
+		} else if (node.op === "<=") {
+			return s <= v;
+		} else {
+			throw new Error(`Unexpected operator: ${node.op}`);
+		}
+	} else if (node.type === "BASE_EXPR") {
+		return matchBase(runeword, node.value);
+	} else {
+		throw new Error(`Unexpected node type: ${(node as ASTNode).type}`);
 	}
 }
 
@@ -134,15 +91,10 @@ export function filterRunewords(
 		return runewords;
 	}
 
-	try {
-		const tokens = tokenize(query);
-		const ast = parse(tokens);
-		if (!ast) {
-			return runewords;
-		}
-		return runewords.filter((rw) => matchNode(rw, ast));
-	} catch {
-		// Return all results if the query is malformed/incomplete
+	const tokens = tokenize(query);
+	const ast = parse(tokens);
+	if (!ast) {
 		return runewords;
 	}
+	return runewords.filter((rw) => matchNode(rw, ast));
 }

@@ -64,7 +64,7 @@ export type Rune =
 	| "Cham"
 	| "Zod";
 
-export type Runeword = {
+export type RunewordDef = {
 	name: string;
 	runes: Rune[]; // e.g. ["Jah", "Ith", "Ber"]
 	bases: BaseCategory[];
@@ -72,4 +72,11 @@ export type Runeword = {
 	level: number;
 	ladderOnly?: boolean;
 	rotw?: boolean;
+};
+
+export type Tag = "fcr" | "ias" | "aura" | "ed" | "mf";
+
+export type Runeword = Required<RunewordDef> & {
+	id: string;
+	tags: Tag[];
 };

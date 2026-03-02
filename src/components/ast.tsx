@@ -7,39 +7,19 @@ type Props = {
 	level?: number;
 };
 
-export const ASTText = (props: Props) => {
+export const ASTText = (props: Props): string => {
 	const { ast, level = 1 } = props;
 	if (!ast) {
-		return null;
+		return "";
 	}
 
 	if (ast.type === "AND" || ast.type === "OR") {
-		return (
-			<React.Fragment>
-				{level > 1 ? <React.Fragment>(</React.Fragment> : ""}
-				<span className={`ast ast-${ast.type}`}>
-					{ast.children.map((c, i) => {
-						const nextLvl = level + 1;
-						const key = `${nextLvl}_${i}`;
-						const subThing = <ASTText ast={c} key={key} level={nextLvl} />;
-						if (typeof subThing === "string") {
-							return `${ast.type.toLowerCase()} ${subThing}`;
-						}
-						return (
-							<React.Fragment key={key}>
-								{i > 0 ? (
-									<span className="logical-separator">
-										{ast.type.toLowerCase()}{" "}
-									</span>
-								) : null}{" "}
-								{subThing}
-							</React.Fragment>
-						);
-					})}
-				</span>
-				{level > 1 ? <React.Fragment>)</React.Fragment> : ""}
-			</React.Fragment>
+		const sep = ` ${ast.type.toLowerCase()} `;
+		const parts = ast.children.map((c) =>
+			ASTText({ ast: c, level: level + 1 }),
 		);
+		const joined = parts.join(sep);
+		return `${level > 1 ? "(" : ""}${joined}${level > 1 ? ")" : ""}`;
 	}
 
 	if (ast.type === "NOT") {
@@ -57,6 +37,51 @@ export const ASTText = (props: Props) => {
 
 		if (ast.child.type === "KEYWORD") {
 			return `does not match "${ast.child.value}"`;
+		}
+
+		if (ast.child.type === "HAS") {
+			if (ast.child.value === "fcr") {
+				return "does not give Faster Cast Rate";
+			}
+			if (ast.child.value === "ias") {
+				return "does not give Increased Attack Speed";
+			}
+			if (ast.child.value === "ed") {
+				return "does not give Enhanced Damage";
+			}
+			if (ast.child.value === "aura')") {
+				return "does not grant an aura";
+			}
+			if (ast.child.value === "mf')") {
+				return "does not have Magic Find";
+			}
+		}
+
+		if (ast.child.type === "BOOL") {
+			if (ast.child.value === "ladder") {
+				return `is not ladder-only`;
+			}
+			if (ast.child.value === "rotw") {
+				return `is not from Reign of the Warlock`;
+			}
+		}
+	}
+
+	if (ast.type === "HAS") {
+		if (ast.value === "fcr") {
+			return "gives Faster Cast Rate";
+		}
+		if (ast.value === "ias") {
+			return "gives Increased Attack Speed";
+		}
+		if (ast.value === "ed") {
+			return "gives Enhanced Damage";
+		}
+		if (ast.value === "aura')") {
+			return "grants an aura";
+		}
+		if (ast.value === "mf')") {
+			return "has Magic Find";
 		}
 	}
 
@@ -76,8 +101,16 @@ export const ASTText = (props: Props) => {
 		return `matches "${ast.value}"`;
 	}
 
-	console.log("ast", ast);
-	return <span>{JSON.stringify(ast)}</span>;
+	if (ast.type === "BOOL") {
+		if (ast.value === "ladder") {
+			return `is ladder-only`;
+		}
+		if (ast.value === "rotw") {
+			return `is from Reign of the Warlock`;
+		}
+	}
+
+	return JSON.stringify(ast);
 };
 
 function baseArticled(base: BaseCategory) {

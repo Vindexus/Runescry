@@ -1,5 +1,6 @@
 import { RUNES, strToBase, strToRune } from "../data/runes";
-import type { BaseCategory, BoolFilter, Rune } from "../types";
+import { stringToTag } from "../data/tags";
+import type { BaseCategory, BoolFilter, Rune, Tag } from "../types";
 import type { Token, OsOp } from "./tokenizer";
 
 export type ASTOSNode = { type: "OS_EXPR"; op: OsOp; value: number };
@@ -9,6 +10,7 @@ export type ASTNode =
 	| { type: "OR"; children: ASTNode[] }
 	| { type: "NOT"; child: ASTNode }
 	| { type: "KEYWORD"; value: string }
+	| { type: "HAS"; value: Tag }
 	| ASTOSNode
 	| { type: "RUNE"; value: Rune }
 	| { type: "BOOL"; value: BoolFilter }
@@ -126,6 +128,18 @@ class Parser {
 				};
 			}
 			return { type: "KEYWORD", value: tok.value };
+		}
+
+		if (tok.type === "HAS") {
+			this.consume();
+			const tag = stringToTag(tok.value);
+			if (!tag) {
+				throw new Error(`oh no bad tag`);
+			}
+			return {
+				type: "HAS",
+				value: tag,
+			};
 		}
 
 		throw new Error(`Unexpected token: ${JSON.stringify(tok)}`);
