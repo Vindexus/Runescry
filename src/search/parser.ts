@@ -1,5 +1,6 @@
 import { strToBase, strToRune } from "../data/runes";
 import { stringToTag } from "../data/tags";
+import { BASE_CATEGORY_MEMBERS } from "../data/bases";
 import type { BaseCategory, BoolFilter, Rune, Stat, Tag } from "../types";
 import type { Token, NumOp } from "./tokenizer";
 
@@ -162,6 +163,13 @@ class Parser {
 		if (tok.type === "BASE_EXPR") {
 			this.consume();
 			const base = strToBase(tok.value);
+			if (!(base in BASE_CATEGORY_MEMBERS)) {
+				this.invalid.push({
+					expression: `base:${tok.value}`,
+					message: `"${tok.value}" is not a valid base`,
+				});
+				return null;
+			}
 			return { type: "BASE_EXPR", value: base };
 		}
 

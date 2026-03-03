@@ -166,6 +166,20 @@ describe("parse", () => {
 		expect(result.invalid).toHaveLength(0);
 	});
 
+	it("rejects an unknown base and records it as invalid", () => {
+		const result = parseResult("base:starship");
+		expect(result.parsed).toBeNull();
+		expect(result.invalid).toHaveLength(1);
+		expect(result.invalid[0].expression).toBe("base:starship");
+		expect(result.invalid[0].message).toContain("starship");
+	});
+
+	it("accepts a known base", () => {
+		const result = parseResult("base:sword");
+		expect(result.parsed).not.toBeNull();
+		expect(result.invalid).toHaveLength(0);
+	});
+
 	it("records an error for an unclosed opening parenthesis", () => {
 		const result = parseResult("(coldres>10 or (psnres>20 psnres<70)");
 		expect(result.parsed).not.toBeNull();

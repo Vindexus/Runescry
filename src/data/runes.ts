@@ -84,6 +84,10 @@ export function strToRune(str: string): Rune | null {
 
 const BASE_ALIASES: Record<string, BaseCategory> = {
 	armour: "armor",
+	body: "armor",
+	chest: "armor",
+	head: "helm",
+	hat: "helm",
 };
 
 export function strToBase(str: string): BaseCategory {
