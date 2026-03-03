@@ -27,7 +27,6 @@ function makeRuneword(overrides: Partial<Runeword>): Runeword {
 		ladderOnly: false,
 		rotw: false,
 		tags: [],
-		value: 0,
 		...overrides,
 	});
 }

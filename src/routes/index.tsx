@@ -13,7 +13,13 @@ const SORT_DEFAULT = "level";
 const DIR_DEFAULT = "auto";
 
 export const Route = createFileRoute("/")({
-	validateSearch: (search: Record<string, unknown>) => ({
+	validateSearch: (
+		search: Record<string, unknown>,
+	): {
+		query?: string;
+		sort?: string;
+		dir?: string;
+	} => ({
 		query: typeof search.query === "string" ? search.query : undefined,
 		sort: typeof search.sort === "string" ? search.sort : undefined,
 		dir: typeof search.dir === "string" ? search.dir : undefined,
