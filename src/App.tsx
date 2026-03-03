@@ -86,7 +86,7 @@ function App() {
 							type="text"
 							name="query"
 							className="search-input"
-							placeholder="e.g. os>=3 (base:sword or base:hammer) -berI has:aura ias>10"
+							placeholder="e.g. os>=3 (base:sword or base:hammer) -ber has:aura ias>10"
 							value={inputValue}
 							onChange={(e) => setInputValue(e.target.value)}
 							autoFocus
