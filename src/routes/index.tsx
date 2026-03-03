@@ -9,27 +9,29 @@ import type { Runeword } from "../types";
 
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 
+const SORT_DEFAULT = "level";
+const DIR_DEFAULT = "auto";
+
 export const Route = createFileRoute("/")({
-	validateSearch: (
-		search: Record<string, unknown>,
-	): {
-		query?: string;
-		sort?: string;
-		dir?: string;
-	} => ({
-		query: search.query ? (search.query as string) : undefined,
-		sort: search.sort ? (search.sort as string) : undefined,
-		dir: search.dir ? (search.dir as string) : undefined,
+	validateSearch: (search: Record<string, unknown>) => ({
+		query: typeof search.query === "string" ? search.query : undefined,
+		sort: typeof search.sort === "string" ? search.sort : undefined,
+		dir: typeof search.dir === "string" ? search.dir : undefined,
 	}),
 	component: Home,
 });
 
+function useSearch() {
+	const { query, sort, dir } = Route.useSearch();
+	return {
+		query: query ?? "",
+		sort: sort ?? SORT_DEFAULT,
+		dir: dir ?? DIR_DEFAULT,
+	};
+}
+
 function Home() {
-	const {
-		query = "",
-		sort: sortBy = "level",
-		dir: direction = "auto",
-	} = Route.useSearch();
+	const { query, sort: sortBy, dir: direction } = useSearch();
 	const navigate = useNavigate({ from: Route.fullPath });
 	const [inputValue, setInputValue] = useState(query);
 	const [showTop, setShowTop] = useState(false);
@@ -88,9 +90,9 @@ function Home() {
 		>;
 		navigate({
 			search: {
-				query: data.query !== "" ? data.query : undefined,
-				sort: data.sort !== "level" ? data.sort : undefined,
-				dir: data.dir !== "auto" ? data.dir : undefined,
+				query: data.query || undefined,
+				sort: data.sort !== SORT_DEFAULT ? data.sort : undefined,
+				dir: data.dir !== DIR_DEFAULT ? data.dir : undefined,
 			},
 		});
 	}
