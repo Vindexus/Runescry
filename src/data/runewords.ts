@@ -6,7 +6,7 @@ import type {
 	Tag,
 	Stat,
 } from "../types";
-import { RUNE_VALUES } from "./runes";
+import { runeCost } from "./rune_cost";
 import { runewordDefs } from "./runeword_defs";
 
 function parseStatRange(
@@ -146,10 +146,8 @@ export function rwDefToRuneword(d: RunewordDef): Runeword {
 		rotw: !!d.rotw,
 		ladderOnly: !!d.ladderOnly,
 		id,
-		value: d.runes.reduce((acc, r) => {
-			return acc + RUNE_VALUES[r];
-		}, 0),
 		tags,
+		cost: runeCost(d.runes),
 		sockets,
 		stats,
 	};

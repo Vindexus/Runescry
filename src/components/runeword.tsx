@@ -30,7 +30,7 @@ export const RunewordLI = ({ rw }: { rw: Runeword }) => {
 					<div>{rw.runes.length} sockets</div>
 					<div className="rw-bases">{rw.bases.join(", ")}</div>
 					<div>Req level {rw.level}</div>
-					<div>Rune score {rw.value.toLocaleString()}</div>
+					<div>Cost ~{rw.cost.toLocaleString()}</div>
 					<div style={{ display: "none" }}>
 						<pre>{JSON.stringify(rw.tags, null, 2)}</pre>
 						<pre>{JSON.stringify(rw.stats, null, 2)}</pre>

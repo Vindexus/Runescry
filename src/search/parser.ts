@@ -1,7 +1,7 @@
 import { strToBase, strToRune } from "../data/runes";
 import { stringToTag } from "../data/tags";
 import { BASE_CATEGORY_MEMBERS } from "../data/bases";
-import type { BaseCategory, BoolFilter, Rune, Stat, Tag } from "../types";
+import type { BaseCategory, BoolFilter, RuneName, Stat, Tag } from "../types";
 import type { Token, NumOp } from "./tokenizer";
 
 export type ASTNumNode = {
@@ -18,7 +18,7 @@ export type ASTNode =
 	| { type: "KEYWORD"; value: string }
 	| { type: "HAS"; value: Tag }
 	| ASTNumNode
-	| { type: "RUNE"; value: Rune }
+	| { type: "RUNE"; value: RuneName }
 	| { type: "BOOL"; value: BoolFilter }
 	| { type: "BASE_EXPR"; value: BaseCategory };
 

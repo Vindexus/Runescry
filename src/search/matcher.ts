@@ -2,7 +2,7 @@ import type { ASTNode } from "./parser";
 import type {
 	BaseCategory,
 	BoolFilter,
-	Rune,
+	RuneName,
 	Runeword,
 	Stat,
 	StatRange,
@@ -31,7 +31,7 @@ function matchKeyword(runeword: Runeword, keyword: string): boolean {
 	);
 }
 
-function matchRune(runeword: Runeword, rune: Rune): boolean {
+function matchRune(runeword: Runeword, rune: RuneName): boolean {
 	return runeword.runes.includes(rune);
 }
 

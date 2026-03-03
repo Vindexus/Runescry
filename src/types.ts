@@ -29,7 +29,7 @@ export type BaseCategory =
 	| "boots"
 	| "belt";
 
-export type Rune =
+export type RuneName =
 	| "El"
 	| "Eld"
 	| "Tir"
@@ -64,9 +64,14 @@ export type Rune =
 	| "Cham"
 	| "Zod";
 
+export type Rune = {
+	name: RuneName;
+	clvl: number;
+};
+
 export type RunewordDef = {
 	name: string;
-	runes: Rune[]; // e.g. ["Jah", "Ith", "Ber"]
+	runes: RuneName[]; // e.g. ["Jah", "Ith", "Ber"]
 	bases: BaseCategory[];
 	attributes: string[];
 	level: number;
@@ -117,7 +122,7 @@ export type Tag =
 export type Runeword = Required<RunewordDef> & {
 	id: string;
 	tags: Tag[];
-	value: number;
+	cost: number;
 	sockets: number;
 	stats: Stats;
 };

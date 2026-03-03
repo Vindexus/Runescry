@@ -1,6 +1,6 @@
-import type { BaseCategory, Rune } from "../types";
+import type { BaseCategory, Rune, RuneName } from "../types";
 
-export const RUNES: Rune[] = [
+export const RUNE_NAMES: RuneName[] = [
 	"El",
 	"Eld",
 	"Tir",
@@ -36,7 +36,43 @@ export const RUNES: Rune[] = [
 	"Zod",
 ];
 
-export const RUNE_VALUES: Record<Rune, number> = {
+export const RUNES: Rune[] = [
+	{ name: "El", clvl: 11 },
+	{ name: "Eld", clvl: 11 },
+	{ name: "Tir", clvl: 13 },
+	{ name: "Nef", clvl: 13 },
+	{ name: "Eth", clvl: 15 },
+	{ name: "Ith", clvl: 15 },
+	{ name: "Tal", clvl: 17 },
+	{ name: "Ral", clvl: 19 },
+	{ name: "Ort", clvl: 21 },
+	{ name: "Thul", clvl: 23 },
+	{ name: "Amn", clvl: 25 },
+	{ name: "Sol", clvl: 27 },
+	{ name: "Shael", clvl: 29 },
+	{ name: "Dol", clvl: 31 },
+	{ name: "Hel", clvl: 33 }, // No clvl requirement, but ilvl 33 — used for scoring
+	{ name: "Io", clvl: 35 },
+	{ name: "Lum", clvl: 37 },
+	{ name: "Ko", clvl: 39 },
+	{ name: "Fal", clvl: 41 },
+	{ name: "Lem", clvl: 43 },
+	{ name: "Pul", clvl: 45 },
+	{ name: "Um", clvl: 47 },
+	{ name: "Mal", clvl: 49 },
+	{ name: "Ist", clvl: 51 },
+	{ name: "Gul", clvl: 53 },
+	{ name: "Vex", clvl: 55 },
+	{ name: "Ohm", clvl: 57 },
+	{ name: "Lo", clvl: 59 },
+	{ name: "Sur", clvl: 61 },
+	{ name: "Ber", clvl: 63 },
+	{ name: "Jah", clvl: 65 },
+	{ name: "Cham", clvl: 67 },
+	{ name: "Zod", clvl: 69 },
+];
+
+export const RUNE_VALUES: Record<RuneName, number> = {
 	El: 1,
 	Eld: 2,
 	Tir: 3,
@@ -72,10 +108,10 @@ export const RUNE_VALUES: Record<Rune, number> = {
 	Zod: 1953,
 };
 
-export function strToRune(str: string): Rune | null {
+export function strToRune(str: string): RuneName | null {
 	const lower = str.trim().toLowerCase();
-	const rn = (lower.slice(0, 1).toUpperCase() + lower.slice(1)) as Rune;
-	if (RUNES.includes(rn)) {
+	const rn = (lower.slice(0, 1).toUpperCase() + lower.slice(1)) as RuneName;
+	if (RUNE_NAMES.includes(rn)) {
 		return rn;
 	}
 

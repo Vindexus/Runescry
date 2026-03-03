@@ -53,10 +53,7 @@ function Home() {
 	let finalDir: "asc" | "desc" = direction as "asc" | "desc";
 	if (direction === "auto") {
 		finalDir = "asc";
-		if (sortBy === "level") {
-			finalDir = "asc";
-		}
-		if (sortBy === "value") {
+		if (sortBy === "cost") {
 			finalDir = "desc";
 		}
 	}
@@ -128,7 +125,7 @@ function Home() {
 							onChange={handleSelectChange}
 						>
 							<option value="level">Level</option>
-							<option value="value">Rune Value</option>
+							<option value="cost">Rune Cost</option>
 							<option value="name">Name</option>
 						</select>
 						<select
