@@ -60,9 +60,12 @@ function Home() {
 			finalDir = "desc";
 		}
 	}
-	const results = filtered.sort((a, b) => {
+	const results = [...filtered].sort((a, b) => {
 		const val1 = a[sortBy as keyof Runeword];
 		const val2 = b[sortBy as keyof Runeword];
+		if (val1 === val2) {
+			return 0;
+		}
 		const lower = val1 < val2;
 		if (finalDir === "asc") {
 			return lower ? -1 : 1;
