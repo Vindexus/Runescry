@@ -13,19 +13,21 @@ function AboutPage() {
 				</Link>
 				<h1 className="page-title">About Runescry</h1>
 			</div>
-			<div>
-				Runescry was developed by{" "}
-				<a href="https://colinkierans.com">Colin "Vindexus" Kierans</a>
-				<br />
-				The GitHub page is here{" "}
-				<a href="https://github.com/Vindexus/Runescry/">
-					https://github.com/Vindexus/Runescry/
-				</a>
-				<br />
-				It is licensed under the MIT License
-				<br />
-				It was heavily inspired by <a href="https://scryfall.com">Scryfall</a>,
-				a Magic the Gathering search site.
+			<div className="about-content">
+				<p>
+					Runescry was developed by{" "}
+					<a href="https://colinkierans.com">Colin "Vindexus" Kierans</a>.
+				</p>
+				<p>
+					It was heavily inspired by{" "}
+					<a href="https://scryfall.com">Scryfall</a>, a Magic: the Gathering
+					card search site.
+				</p>
+				<p>
+					The source code is available on{" "}
+					<a href="https://github.com/Vindexus/Runescry/">GitHub</a> and is
+					licensed under the MIT License.
+				</p>
 			</div>
 		</div>
 	);
