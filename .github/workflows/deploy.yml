@@ -27,6 +27,9 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+        env:
+          VITE_ANALYTICS_DOMAIN: ${{ vars.VITE_ANALYTICS_DOMAIN }}
+          VITE_ANALYTICS_SRC: ${{ vars.VITE_ANALYTICS_SRC }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

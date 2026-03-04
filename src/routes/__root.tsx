@@ -30,9 +30,7 @@ export const Route = createRootRoute({
 					'Search for runewords with text-based queries. EG: (base:sword or base:axe) os<=5 -jah "cast level"',
 			},
 		],
-		links: [
-			{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-		],
+		links: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
 	}),
 	component: RootComponent,
 });
@@ -65,6 +63,14 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 		<html lang="en">
 			<head>
 				<HeadContent />
+				{import.meta.env.VITE_ANALYTICS_DOMAIN &&
+					import.meta.env.VITE_ANALYTICS_SRC && (
+						<script
+							defer
+							data-domain={import.meta.env.VITE_ANALYTICS_DOMAIN}
+							src={import.meta.env.VITE_ANALYTICS_SRC}
+						/>
+					)}
 			</head>
 			<body>
 				{children}
