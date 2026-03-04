@@ -25,7 +25,7 @@ function makeRuneword(overrides: Partial<Runeword>): Runeword {
 		attributes: [],
 		level: 1,
 		ladderOnly: false,
-		rotw: false,
+		releasedIn: "og",
 		tags: [],
 		...overrides,
 	});
@@ -88,6 +88,11 @@ describe("filterRunewords", () => {
 	it("filters by keyword in attributes", () => {
 		const results = filterRunewords(testRunewords, "teleport");
 		expect(results[0].name).toBe("Enigma");
+	});
+
+	it("filters by keyword in bases", () => {
+		const results = filterRunewords(testRunewords, "polearm");
+		expect(results[0].name).toBe("Insight");
 	});
 
 	it("filters by rune name", () => {

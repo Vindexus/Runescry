@@ -5,12 +5,14 @@ import { parse } from "../search/parser";
 import { tokenize } from "../search/tokenizer";
 import { RunewordLI } from "../components/runeword";
 import { ASTText } from "../components/ast";
-import type { Runeword } from "../types";
+import type { GameVersion, Runeword } from "../types";
+import { GAME_VERSIONS, getGameVersionLabel } from "../data/game_versions";
 
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 
 const SORT_DEFAULT = "level";
 const DIR_DEFAULT = "auto";
+const VERSION_DEFAULT: GameVersion = "rotw";
 
 export const Route = createFileRoute("/")({
 	validateSearch: (
@@ -19,25 +21,33 @@ export const Route = createFileRoute("/")({
 		query?: string;
 		sort?: string;
 		dir?: string;
+		version?: string;
 	} => ({
 		query: typeof search.query === "string" ? search.query : undefined,
 		sort: typeof search.sort === "string" ? search.sort : undefined,
 		dir: typeof search.dir === "string" ? search.dir : undefined,
+		version: typeof search.version === "string" ? search.version : undefined,
 	}),
 	component: Home,
 });
 
 function useSearch() {
-	const { query, sort, dir } = Route.useSearch();
+	const { query, sort, dir, version } = Route.useSearch();
 	return {
 		query: query ?? "",
 		sort: sort ?? SORT_DEFAULT,
 		dir: dir ?? DIR_DEFAULT,
+		version: (version as GameVersion) ?? VERSION_DEFAULT,
 	};
 }
 
 function Home() {
-	const { query, sort: sortBy, dir: direction } = useSearch();
+	const {
+		query,
+		sort: sortBy,
+		dir: direction,
+		version: gameVersion,
+	} = useSearch();
 	const navigate = useNavigate({ from: Route.fullPath });
 	const [inputValue, setInputValue] = useState(query);
 	const [showTop, setShowTop] = useState(false);
@@ -55,9 +65,12 @@ function Home() {
 	}, []);
 	const tokens = tokenize(query);
 	const { parsed: ast, invalid } = parse(tokens);
+	const versionFiltered = RUNEWORDS.filter((rw) =>
+		rw.versions.includes(gameVersion),
+	);
 	const filtered = ast
-		? RUNEWORDS.filter((rw) => matchNode(rw, ast))
-		: RUNEWORDS;
+		? versionFiltered.filter((rw) => matchNode(rw, ast))
+		: versionFiltered;
 	let finalDir: "asc" | "desc" = direction as "asc" | "desc";
 	if (direction === "auto") {
 		finalDir = "asc";
@@ -99,6 +112,7 @@ function Home() {
 				query: data.query || undefined,
 				sort: data.sort !== SORT_DEFAULT ? data.sort : undefined,
 				dir: data.dir !== DIR_DEFAULT ? data.dir : undefined,
+				version: data.version !== VERSION_DEFAULT ? data.version : undefined,
 			},
 		});
 	}
@@ -125,27 +139,44 @@ function Home() {
 						<button type="submit">Go</button>
 					</div>
 					<div className="sort-controls">
-						<span className="sort-label">Sort By</span>
-						<select
-							defaultValue={sortBy}
-							key={sortBy}
-							name="sort"
-							onChange={handleSelectChange}
-						>
-							<option value="level">Level</option>
-							<option value="cost">Rune Cost</option>
-							<option value="name">Name</option>
-						</select>
-						<select
-							defaultValue={direction}
-							key={direction}
-							name="dir"
-							onChange={handleSelectChange}
-						>
-							<option value="auto">Auto</option>
-							<option value="asc">Asc</option>
-							<option value="desc">Desc</option>
-						</select>
+						<div className="control-group">
+							<span className="control-label">Sort</span>
+							<select
+								defaultValue={sortBy}
+								key={sortBy}
+								name="sort"
+								onChange={handleSelectChange}
+							>
+								<option value="level">Level</option>
+								<option value="cost">Rune Cost</option>
+								<option value="name">Name</option>
+							</select>
+							<select
+								defaultValue={direction}
+								key={direction}
+								name="dir"
+								onChange={handleSelectChange}
+							>
+								<option value="auto">Auto</option>
+								<option value="asc">Asc</option>
+								<option value="desc">Desc</option>
+							</select>
+						</div>
+						<div className="control-group">
+							<span className="control-label">Version</span>
+							<select
+								defaultValue={gameVersion}
+								key={gameVersion}
+								name="version"
+								onChange={handleSelectChange}
+							>
+								{GAME_VERSIONS.map((v) => (
+									<option key={v} value={v}>
+										{getGameVersionLabel(v)}
+									</option>
+								))}
+							</select>
+						</div>
 						<Link to="/syntax" className="syntax-toggle">
 							syntax guide
 						</Link>

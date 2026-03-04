@@ -6,6 +6,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Vex", "Hel", "El", "Eld", "Zod", "Eth"],
 		bases: ["weapon"],
 		level: 69,
+		releasedIn: "1.10",
 		attributes: [
 			"50% Chance To Cast Level 20 Poison Nova When You Kill An Enemy",
 			"Indestructible",
@@ -29,6 +30,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Cham", "Sur", "Io", "Lo"],
 		bases: ["polearm"],
 		level: 67,
+		releasedIn: "1.10",
 		attributes: [
 			"25% Chance To Cast Level 17 Fire Wall When Struck",
 			"Level (16-20) Concentration Aura When Equipped",
@@ -49,6 +51,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Sur", "Cham", "Amn", "Lo"],
 		bases: ["weapon"],
 		level: 67,
+		releasedIn: "1.10",
 		attributes: [
 			"100% Chance To Cast Level 36 Blaze When You Level-Up",
 			"100% Chance To Cast Level 48 Meteor When You Die",
@@ -69,6 +72,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Amn", "Ber", "Ist", "Sol", "Sur"],
 		bases: ["melee"],
 		level: 63,
+		releasedIn: "1.10",
 		attributes: [
 			"Indestructible",
 			"+(260-310)% Enhanced Damage",
@@ -89,6 +93,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Hel", "Ohm", "Um", "Lo", "Cham"],
 		bases: ["axe", "hammer", "polearm"],
 		level: 67,
+		releasedIn: "1.10",
 		attributes: [
 			"5% Chance To Cast Level 18 Volcano On Striking",
 			"Level 12 Holy Freeze Aura When Equipped",
@@ -109,6 +114,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Jah", "Mal", "Jah", "Sur", "Jah", "Ber"],
 		bases: ["axe", "hammer", "sword"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"6% Chance To Cast Level 11 Fade When Struck",
 			"10% Chance To Cast Level 18 Life Tap On Striking",
@@ -128,6 +134,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Vex", "Lo", "Ber", "Jah", "Ko"],
 		bases: ["polearm", "sword"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"23% Chance To Cast Level 12 Volcano On Striking",
 			"5% Chance To Cast Level 23 Molten Boulder On Striking",
@@ -149,6 +156,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Jah", "Ith", "Ber"],
 		bases: ["armor"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"+2 To All Skills",
 			"+45% Faster Run/Walk",
@@ -168,6 +176,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Vex", "Vex", "Lo", "Jah"],
 		bases: ["weapon"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"100% Chance To Cast level 40 Blaze When You Level-up",
 			"40% Chance To Cast Level 22 Firestorm On Striking",
@@ -187,6 +196,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Vex", "Vex", "Lo", "Jah"],
 		bases: ["shield"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"100% Chance To Cast level 40 Blaze When You Level-up",
 			"40% Chance To Cast Level 22 Firestorm On Striking",
@@ -206,6 +216,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Jah", "Lo", "Mal", "Gul"],
 		bases: ["ranged"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"35% Chance To Cast Level 14 Amplify Damage When Struck",
 			"100% Chance To Cast Level 18 Bone Spear On Striking",
@@ -225,6 +236,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ohm", "Jah", "Lem", "Eld"],
 		bases: ["ranged"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"Level (12-15) Fanaticism Aura When Equipped",
 			"+(1-2) To All Skills",
@@ -245,6 +257,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Fal", "Ohm", "Ort", "Jah"],
 		bases: ["axe", "hammer"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"+30% Increased Attack Speed",
 			"+(320-370)% Enhanced Damage",
@@ -264,6 +277,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Jah", "Gul", "Eth"],
 		bases: ["melee"],
 		level: 65,
+		releasedIn: "og",
 		attributes: [
 			"40% Increased Attack Speed",
 			"+209% Enhanced Damage",
@@ -283,6 +297,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Io", "Jah", "Pul"],
 		bases: ["helm"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"10% Chance To Cast Level 15 Confuse When Struck",
 			"Level 15 Holy Shock Aura When Equipped",
@@ -302,6 +317,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Io", "Jah", "Pul"],
 		bases: ["shield"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"10% Chance To Cast Level 15 Confuse When Struck",
 			"Level 15 Holy Shock Aura When Equipped",
@@ -321,6 +337,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Amn", "Shael", "Jah", "Lo"],
 		bases: ["ranged"],
 		level: 65,
+		releasedIn: "1.10",
 		attributes: [
 			"100% Chance To Cast Level 40 Blizzard When You Level-up",
 			"25% Chance To Cast Level 22 Frost Nova On Striking",
@@ -341,6 +358,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ber", "Mal", "Ber", "Ist"],
 		bases: ["polearm"],
 		level: 63,
+		releasedIn: "1.10",
 		attributes: [
 			"50% Chance To Cast Level 20 Chain Lightning When You Kill An Enemy",
 			"Level 12 Conviction Aura When Equipped",
@@ -360,6 +378,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Dol", "Um", "Ber", "Ist"],
 		bases: ["armor"],
 		level: 63,
+		releasedIn: "1.10",
 		attributes: [
 			"+2 To All Skills",
 			"+200% Damage To Demons",
@@ -378,6 +397,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ber", "Tir", "Um", "Mal", "Lum"],
 		bases: ["axe", "hammer", "scepter"],
 		level: 63,
+		releasedIn: "1.10",
 		attributes: [
 			"Level 9 Fanaticism Aura When Equipped",
 			"+40% Increased Attack Speed",
@@ -399,6 +419,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Pul", "Lum", "Ber", "Mal"],
 		bases: ["ranged"],
 		level: 63,
+		releasedIn: "1.10",
 		attributes: [
 			"30% Chance To Cast Level 1 Decrepify On Striking",
 			"5% Chance To Cast Level 10 Life Tap On Striking",
@@ -419,6 +440,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Sur", "Lo", "Sol"],
 		bases: ["armor"],
 		level: 61,
+		releasedIn: "1.10",
 		attributes: [
 			"20% Chance to Cast Level 18 Venom When Struck",
 			"12% Chance To Cast Level 15 Hydra On Striking",
@@ -438,6 +460,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Sur", "Lo", "Sol"],
 		bases: ["shield"],
 		level: 61,
+		releasedIn: "1.10",
 		attributes: [
 			"20% Chance to Cast Level 18 Venom When Struck",
 			"12% Chance To Cast Level 15 Hydra On Striking",
@@ -457,6 +480,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ral", "Ohm", "Sur", "Eth"],
 		bases: ["armor"],
 		level: 61,
+		releasedIn: "1.10",
 		attributes: [
 			"Level (15-21) Thorns Aura When Equipped",
 			"+50% Faster Hit Recovery",
@@ -477,6 +501,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Sur", "El"],
 		bases: ["melee"],
 		level: 61,
+		releasedIn: "1.10",
 		attributes: [
 			"10% Chance To Cast Level 9 Tornado On Striking",
 			"+20% Faster Run/Walk",
@@ -496,6 +521,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Eth", "Tir", "Lo", "Mal", "Ral"],
 		bases: ["sword", "axe"],
 		level: 59,
+		releasedIn: "1.10",
 		attributes: [
 			"35% Chance To Cast Level 15 Venom On Striking",
 			"+(30-40)% Increased Attack Speed",
@@ -517,6 +543,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["El", "Sol", "Dol", "Lo"],
 		bases: ["weapon"],
 		level: 59,
+		releasedIn: "1.10",
 		attributes: [
 			"20% Chance To Cast Level 15 Chilling Armor when Struck",
 			"+25% Faster Cast Rate",
@@ -538,6 +565,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["El", "Sol", "Dol", "Lo"],
 		bases: ["armor"],
 		level: 59,
+		releasedIn: "1.10",
 		attributes: [
 			"20% Chance To Cast Level 15 Chilling Armor when Struck",
 			"+25% Faster Cast Rate",
@@ -559,6 +587,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Vex", "Ohm", "Ist", "Dol"],
 		bases: ["shield"],
 		level: 57,
+		releasedIn: "1.10",
 		attributes: [
 			"15% Chance To Cast Level 5 Life Tap On Striking",
 			"Level (13-16) Defiance Aura When Equipped",
@@ -579,6 +608,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Amn", "Ral", "Mal", "Ist", "Ohm"],
 		bases: ["weapon"],
 		level: 57,
+		releasedIn: "1.10",
 		attributes: [
 			"+1 To All Skills",
 			"+40% Increased Attack Speed",
@@ -599,6 +629,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Fal", "Ohm", "Um"],
 		bases: ["claw"],
 		level: 57,
+		releasedIn: "1.10",
 		attributes: [
 			"9% Chance To Cast Level 11 Frozen Orb On Striking",
 			"11% Chance To Cast Level 9 Charged Bolt On Striking",
@@ -617,6 +648,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Hel", "El", "Vex", "Ort", "Gul"],
 		bases: ["sword", "axe"],
 		level: 55,
+		releasedIn: "1.10",
 		attributes: [
 			"Indestructible",
 			"100% Chance To Cast Level 44 Chain Lightning When You Die",
@@ -639,6 +671,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Dol", "Eld", "Hel", "Ist", "Tir", "Vex"],
 		bases: ["weapon"],
 		level: 55,
+		releasedIn: "og",
 		attributes: [
 			"+2 to All Skills",
 			"+20% Increased Attack Speed",
@@ -661,6 +694,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ko", "Vex", "Pul", "Thul"],
 		bases: ["staff", "mace"],
 		level: 55,
+		releasedIn: "1.10",
 		attributes: [
 			"+3 To All Skills",
 			"+40% Faster Cast Rate",
@@ -682,6 +716,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Mal", "Um", "Gul", "Fal"],
 		bases: ["sword", "axe"],
 		level: 53,
+		releasedIn: "1.10",
 		attributes: [
 			"+30% Increased Attack Speed",
 			"+(230-270)% Enhanced Damage",
@@ -701,6 +736,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Hel", "Ko", "Lem", "Gul"],
 		bases: ["polearm", "scepter"],
 		level: 53,
+		releasedIn: "1.10",
 		attributes: [
 			"20% Chance To Cast Level 16 Tornado On Striking",
 			"16% Chance To Cast Level 21 Frozen Orb On Attack",
@@ -721,6 +757,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ral", "Gul", "Eld"],
 		bases: ["armor"],
 		level: 55,
+		releasedIn: "1.11",
 		attributes: [
 			"100% Chance To Cast Level 5 Holy Bolt On Striking",
 			"+2 To Paladin Skill Levels",
@@ -737,6 +774,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Lem", "Ist", "Io"],
 		bases: ["helm"],
 		level: 51,
+		releasedIn: "1.10",
 		attributes: [
 			"1% Chance To Cast lvl 50 Delirium When Struck (morphs your character into a Bone Fetish for about 1 minute; once morphed, you can do normal attacks in the form of a headbutt)",
 			"6% Chance To Cast lvl 14 Mind Blast When Struck",
@@ -756,6 +794,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Pul", "Mal", "Lum"],
 		bases: ["axe", "mace", "sword"],
 		level: 59,
+		releasedIn: "1.10",
 		attributes: [
 			"Indestructible",
 			"30% Chance To Cast Level 20 Bone Spirit On Striking",
@@ -776,6 +815,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ko", "Ko", "Mal"],
 		bases: ["shield"],
 		level: 49,
+		releasedIn: "1.10",
 		attributes: [
 			"+20% Faster Hit Recovery",
 			"+20% Faster Block Rate",
@@ -794,6 +834,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tal", "Dol", "Mal"],
 		bases: ["weapon"],
 		level: 49,
+		releasedIn: "og",
 		attributes: [
 			"Ignore Target's Defense",
 			"+273 Poison Damage Over 6 Seconds",
@@ -810,6 +851,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ort", "Mal", "Ith"],
 		bases: ["armor"],
 		level: 49,
+		releasedIn: "1.11",
 		attributes: [
 			"5% Chance To Cast Level 15 Cyclone Armor When Struck",
 			"5% Chance To Cast Level 15 Twister On Striking",
@@ -826,6 +868,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Mal", "Tir"],
 		bases: ["armor"],
 		level: 49,
+		releasedIn: "1.10",
 		attributes: [
 			"+25% Faster Hit Recovery",
 			"+(140-170)% Enhanced Defense",
@@ -843,6 +886,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Sol", "Um", "Um"],
 		bases: ["armor"],
 		level: 47,
+		releasedIn: "1.11",
 		attributes: [
 			"15% Chance To Cast level 10 Bone Armor When Struck",
 			"15% Chance To Cast level 10 Bone Spear On Striking",
@@ -858,6 +902,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Fal", "Um", "Pul"],
 		bases: ["armor"],
 		level: 47,
+		releasedIn: "1.10",
 		attributes: [
 			"15% Chance To Cast Level 3 Dim Vision When Struck",
 			"+10% Faster Hit Recovery",
@@ -875,6 +920,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Um", "Pul", "Lum"],
 		bases: ["armor"],
 		level: 47,
+		releasedIn: "1.10",
 		attributes: [
 			"+60% Faster Hit Recovery",
 			"+(250-290)% Enhanced Defense",
@@ -893,6 +939,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Um", "Thul"],
 		bases: ["armor"],
 		level: 47,
+		releasedIn: "1.10",
 		attributes: [
 			"40% faster hit Recovery",
 			"+(10-20)% Enhanced Damage",
@@ -913,6 +960,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Um", "Tir"],
 		bases: ["axe", "polearm", "sword"],
 		level: 47,
+		releasedIn: "1.10",
 		attributes: [
 			"10% Chance To Cast Level 17 Chain Lightning On Striking",
 			"7% Chance To Cast Level 13 Static Field On Striking",
@@ -932,6 +980,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Pul", "Ral", "Sol"],
 		bases: ["armor"],
 		level: 45,
+		releasedIn: "1.11",
 		attributes: [
 			"5% Chance To Cast Level 15 Blaze When Struck",
 			"5% Chance To Cast level 15 Fire Ball On Striking",
@@ -948,6 +997,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Amn", "Lem", "Ko"],
 		bases: ["hammer", "scepter", "sword"],
 		level: 43,
+		releasedIn: "1.10",
 		attributes: [
 			"20% Chance To Cast Level 15 Decrepify On Striking",
 			"Level (16-18) Sanctuary Aura When Equipped",
@@ -967,6 +1017,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Lem", "Ko", "Tir"],
 		bases: ["armor"],
 		level: 43,
+		releasedIn: "og",
 		attributes: [
 			"+10 to Dexterity",
 			"+2 to Mana After Each Kill",
@@ -980,6 +1031,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Lem", "Ko", "El", "Eld"],
 		bases: ["mace", "sword"],
 		level: 43,
+		releasedIn: "1.10",
 		attributes: [
 			"15% Chance To Cast Level 13 Frozen Orb On Striking",
 			"18% Chance To Cast Level 20 Ice Blast On Striking",
@@ -1001,6 +1053,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Dol", "Ort", "Eld", "Lem"],
 		bases: ["weapon"],
 		level: 43,
+		releasedIn: "1.10",
 		attributes: [
 			"+25% Increased Attack Speed",
 			"+(160-210)% Enhanced Damage",
@@ -1022,6 +1075,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Thul", "Lem"],
 		bases: ["armor"],
 		level: 43,
+		releasedIn: "1.11",
 		attributes: [
 			"5% Chance To Cast Level 15 Fade When Struck",
 			"25% Chance To Cast level 15 Venom On Striking",
@@ -1038,6 +1092,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Hel", "Ko", "Thul", "Eth", "Fal"],
 		bases: ["polearm"],
 		level: 41,
+		releasedIn: "1.10",
 		attributes: [
 			"30% Chance To Cast Level 21 Enchant When You Kill An Enemy",
 			"+40% Faster Hit Recovery",
@@ -1059,6 +1114,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Hel", "Lum", "Fal"],
 		bases: ["armor"],
 		level: 41,
+		releasedIn: "og",
 		attributes: [
 			"+20% Enhanced Damage",
 			"+25 To Strength",
@@ -1076,6 +1132,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Ko", "Nef"],
 		bases: ["ranged"],
 		level: 39,
+		releasedIn: "og",
 		attributes: [
 			"+3 To Bow and Crossbow Skills (Amazon Only)",
 			"+20% Increased Attack Speed",
@@ -1094,6 +1151,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tir", "Ith", "Sol", "Ko"],
 		bases: ["ranged"],
 		level: 39,
+		releasedIn: "1.10",
 		attributes: [
 			"Level 10 Vigor Aura When Equipped",
 			"+(200-275)% Enhanced Damage",
@@ -1116,6 +1174,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Lum", "Io", "Sol", "Eth"],
 		bases: ["staff"],
 		level: 37,
+		releasedIn: "og",
 		attributes: [
 			"+3 To Sorceress Skill Levels",
 			"+33% Faster Cast Rate",
@@ -1136,6 +1195,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Eth", "Lum"],
 		bases: ["shield"],
 		level: 37,
+		releasedIn: "1.10",
 		attributes: [
 			"+1 To All Skills",
 			"+10% Faster Cast Rate",
@@ -1154,6 +1214,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Nef", "Lum"],
 		bases: ["armor"],
 		level: 37,
+		releasedIn: "og",
 		attributes: [
 			"+20% Faster Hit Recovery",
 			"+75% Enhanced Defense",
@@ -1170,6 +1231,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Dol", "Io"],
 		bases: ["wand"],
 		level: 35,
+		releasedIn: "og",
 		attributes: [
 			"+3 to Poison and Bone Skills (Necromancer Only)",
 			"+20% Faster Cast Rate",
@@ -1188,6 +1250,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Thul", "Io", "Nef"],
 		bases: ["club", "hammer", "mace"],
 		level: 35,
+		releasedIn: "og",
 		attributes: [
 			"+15% Increased Attack Speed",
 			"+120% Enhanced Damage",
@@ -1206,6 +1269,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Hel", "Amn", "Nef"],
 		bases: ["armor"],
 		level: 25,
+		releasedIn: "1.11",
 		attributes: [
 			"3% Chance To Cast Level 1 Howl When Struck",
 			"10% Chance To Cast Level 1 Taunt On Striking",
@@ -1222,6 +1286,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Thul", "Amn"],
 		bases: ["armor"],
 		level: 29,
+		releasedIn: "1.11",
 		attributes: [
 			"4% Chance To Cast Level 5 Slow Missiles When Struck",
 			"2% Chance To Cast level 15 Valkyrie On Striking",
@@ -1238,6 +1303,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Eth"],
 		bases: ["shield"],
 		level: 29,
+		releasedIn: "og",
 		attributes: [
 			"+40% Faster Block Rate",
 			"20% Increased Chance of Blocking",
@@ -1254,6 +1320,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Amn", "El", "Ith", "Tir", "Sol"],
 		bases: ["melee"],
 		level: 27,
+		releasedIn: "og",
 		attributes: [
 			"+1 to all skills",
 			"+160% Enhanced Damage",
@@ -1274,6 +1341,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ort", "Sol"],
 		bases: ["helm"],
 		level: 27,
+		releasedIn: "og",
 		attributes: [
 			"+1 to All Skills",
 			"+10 to Energy",
@@ -1289,6 +1357,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ral", "Tir", "Tal", "Sol"],
 		bases: ["polearm", "staff"],
 		level: 27,
+		releasedIn: "1.10",
 		attributes: [
 			"Level (12-17) Meditation Aura When Equipped",
 			"+35% Faster Cast Rate",
@@ -1309,6 +1378,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Nef", "Sol", "Ith"],
 		bases: ["helm"],
 		level: 27,
+		releasedIn: "og",
 		attributes: [
 			"+75% Enhanced Defense",
 			"+30 Defense vs. Missiles",
@@ -1327,6 +1397,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tal", "Thul", "Ort", "Amn"],
 		bases: ["shield"],
 		level: 25,
+		releasedIn: "1.10",
 		attributes: [
 			"+2 To All Skills",
 			"+(25-35)% Faster Cast Rate",
@@ -1347,6 +1418,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tal", "Thul", "Ort", "Amn"],
 		bases: ["sword"],
 		level: 25,
+		releasedIn: "1.10",
 		attributes: [
 			"+2 To All Skills",
 			"+(25-35)% Faster Cast Rate",
@@ -1367,6 +1439,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Amn", "Ral", "Thul"],
 		bases: ["sword", "scepter"],
 		level: 25,
+		releasedIn: "og",
 		attributes: [
 			"+100% Enhanced Damage",
 			"+150 to Attack Rating",
@@ -1385,6 +1458,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tir", "Tal", "Amn"],
 		bases: ["ranged"],
 		level: 25,
+		releasedIn: "1.10",
 		attributes: [
 			"Level 15 Thorns Aura When Equipped",
 			"+35% Increased Attack Speed",
@@ -1404,6 +1478,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Amn", "Tir"],
 		bases: ["melee"],
 		level: 25,
+		releasedIn: "og",
 		attributes: [
 			"+35% Enhanced Damage",
 			"7% Life stolen per hit",
@@ -1419,6 +1494,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Eth", "Ral", "Ort", "Tal"],
 		bases: ["scepter"],
 		level: 23,
+		releasedIn: "og",
 		attributes: [
 			"+60% Enhanced Damage",
 			"+10 to Maximum Damage",
@@ -1438,6 +1514,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ral", "Ort", "Tal"],
 		bases: ["shield"],
 		level: 21,
+		releasedIn: "og",
 		attributes: [
 			"+50% Enhanced Defense",
 			"Cold Resist +43%",
@@ -1453,6 +1530,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ort", "Eth"],
 		bases: ["ranged"],
 		level: 21,
+		releasedIn: "og",
 		attributes: [
 			"7% Chance to Cast Level 1 Twister When Struck",
 			"+25% Faster Run/Walk",
@@ -1470,6 +1548,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tir", "Ral"],
 		bases: ["staff"],
 		level: 19,
+		releasedIn: "og",
 		attributes: [
 			"+3 to Fire Skills",
 			"Adds 5-30 Fire Damage",
@@ -1487,6 +1566,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tal", "Eth"],
 		bases: ["armor"],
 		level: 17,
+		releasedIn: "og",
 		attributes: [
 			"+25% Faster Run/Walk",
 			"+25% Faster Casting Rate",
@@ -1504,6 +1584,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Ith", "El", "Eth"],
 		bases: ["melee"],
 		level: 15,
+		releasedIn: "og",
 		attributes: [
 			"+33% Enhanced Damage",
 			"+9 to Maximum Damage",
@@ -1521,6 +1602,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Nef", "Tir"],
 		bases: ["helm"],
 		level: 13,
+		releasedIn: "og",
 		attributes: [
 			"+50% Enhanced Defense",
 			"+10 Defense",
@@ -1538,6 +1620,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tir", "El"],
 		bases: ["sword", "axe", "mace"],
 		level: 13,
+		releasedIn: "og",
 		attributes: [
 			"+25% Increased Attack Speed",
 			"+20% Enhanced Damage",
@@ -1555,6 +1638,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Tal", "Ort", "Thul"],
 		bases: ["claw"],
 		level: 23,
+		releasedIn: "2.4",
 		attributes: [
 			"+30% Faster Block Rate",
 			"+(40-80)% Enhanced Damage",
@@ -1574,6 +1658,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Io", "Sol"],
 		bases: ["helm"],
 		level: 35,
+		releasedIn: "2.6",
 		attributes: [
 			"+20% Faster Hit Recovery",
 			"+(4-6)% Life Stolen Per Hit",
@@ -1591,6 +1676,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Io", "Tal"],
 		bases: ["helm"],
 		level: 35,
+		releasedIn: "2.6",
 		attributes: [
 			"Level 1 Cleansing Aura when Equipped",
 			"+20% Faster Hit Recovery",
@@ -1607,6 +1693,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Io", "Ort"],
 		bases: ["helm"],
 		level: 35,
+		releasedIn: "2.6",
 		attributes: [
 			"+20% Faster Hit Recovery",
 			"+(75-100)% Enhanced Defense",
@@ -1622,6 +1709,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Io", "Thul"],
 		bases: ["helm"],
 		level: 35,
+		releasedIn: "2.6",
 		attributes: [
 			"+20% Faster Hit Recovery",
 			"+(75-100)% Enhanced Defense",
@@ -1638,6 +1726,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Io", "Ral"],
 		bases: ["helm"],
 		level: 35,
+		releasedIn: "2.6",
 		attributes: [
 			"+20% Faster Hit Recovery",
 			"+(75-100)% Enhanced Defense",
@@ -1653,6 +1742,8 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Ko", "Eld"],
 		bases: ["weapon"],
 		level: 39,
+		releasedIn: "2.6",
+		versions: ["2.6"],
 		attributes: [
 			"+10 to Dexterity",
 			"5% Chance to Cast Level 1 Burst of Speed on Striking",
@@ -1669,6 +1760,8 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Shael", "Ko", "Eld"],
 		bases: ["armor"],
 		level: 39,
+		releasedIn: "2.6",
+		versions: ["2.6"],
 		attributes: [
 			"+10 to Dexterity",
 			"+65% Faster Run/Walk",
@@ -1685,6 +1778,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Fal", "Io", "Ith", "Eld", "El", "Hel"],
 		bases: ["sword"],
 		level: 41,
+		releasedIn: "2.4",
 		attributes: [
 			"18% Chance to Cast Level 18 Taunt On Striking",
 			"+3 to Combat Skills (Barbarian Only)",
@@ -1709,6 +1803,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Pul", "Ith", "Eld"],
 		bases: ["helm"],
 		level: 45,
+		releasedIn: "2.4",
 		attributes: [
 			"+33% Piercing Attack",
 			"+(15-25)% Bonus to Attack Rating",
@@ -1727,6 +1822,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Mal", "Gul", "Amn"],
 		bases: ["claw"],
 		level: 53,
+		releasedIn: "2.6",
 		attributes: [
 			"+50% chance for finishing moves to not consume charges",
 			"When a finisher is executed this way, it now refreshes the expiration timer of the stack",
@@ -1747,6 +1843,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Nef", "Pul", "Vex"],
 		bases: ["helm"],
 		level: 55,
+		releasedIn: "2.4",
 		attributes: [
 			"Level (4-8) Resist Fire Aura When Equipped",
 			"+3 To Fire Skills",
@@ -1765,6 +1862,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Cham", "Shael", "Um"],
 		bases: ["sword", "claw", "dagger"],
 		level: 67,
+		releasedIn: "2.4",
 		attributes: [
 			"20% Chance To Cast Level 12 Lower Resist When Struck",
 			"25% Chance to Cast Level 15 Poison Nova On Striking",
@@ -1784,6 +1882,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Cham", "Shael", "Gul", "Thul", "Ith"],
 		bases: ["ranged"],
 		level: 67,
+		releasedIn: "2.4",
 		attributes: [
 			"Level (8-12) Concentration Aura When Equipped",
 			"+3 To All Skills",
@@ -1804,6 +1903,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Io", "Cham", "Fal"],
 		bases: ["helm"],
 		level: 67,
+		releasedIn: "2.6",
 		attributes: [
 			"Werewolf strikes grant Mark for 180 seconds",
 			"Mark of the Wolf:",
@@ -1828,6 +1928,7 @@ export const runewordDefs: RunewordDef[] = [
 		runes: ["Zod", "Ist", "Lem", "Lum", "Io", "Nef"],
 		bases: ["staff"],
 		level: 69,
+		releasedIn: "2.4",
 		attributes: [
 			"Indestructible",
 			"24% Chance to cast level 10 Weaken when struck",
@@ -1847,10 +1948,10 @@ export const runewordDefs: RunewordDef[] = [
 	},
 	{
 		name: "Authority",
-		rotw: true,
 		runes: ["Hel", "Shael", "Ral"],
 		bases: ["armor"],
 		level: 29,
+		releasedIn: "rotw",
 		attributes: [
 			"2% Chance to cast level 10 Psychic Ward when struck",
 			"10% Chance to cast level 15 Miasma Chains on striking",
@@ -1864,10 +1965,10 @@ export const runewordDefs: RunewordDef[] = [
 	},
 	{
 		name: "Coven",
-		rotw: true,
 		runes: ["Ist", "Ral", "Io"],
 		bases: ["helm"],
 		level: 51,
+		releasedIn: "rotw",
 		attributes: [
 			"5% Chance to cast level 10 Sigil Lethargy when struck",
 			"+1 to All Skills",
@@ -1883,10 +1984,10 @@ export const runewordDefs: RunewordDef[] = [
 	},
 	{
 		name: "Void",
-		rotw: true,
 		runes: ["Thul", "Zod", "Ist"],
 		bases: ["dagger"],
 		level: 69,
+		releasedIn: "rotw",
 		attributes: [
 			"+2 to All Skills",
 			"+40% Faster Cast Rate",
@@ -1902,10 +2003,10 @@ export const runewordDefs: RunewordDef[] = [
 	},
 	{
 		name: "Vigilance",
-		rotw: true,
 		runes: ["Dol", "Gul"],
 		bases: ["shield"],
 		level: 53,
+		releasedIn: "rotw",
 		attributes: [
 			"5% Chance to cast level 10 Ring of Fire when struck",
 			"+10% Faster Run/Walk",
@@ -1921,10 +2022,10 @@ export const runewordDefs: RunewordDef[] = [
 	},
 	{
 		name: "Ritual",
-		rotw: true,
 		runes: ["Amn", "Shael", "Ohm"],
 		bases: ["dagger"],
 		level: 57,
+		releasedIn: "rotw",
 		attributes: [
 			"13% Chance to cast level 1 Sigil Lethargy when struck",
 			"+(150-250)% Damage to Demons",
@@ -1936,5 +2037,39 @@ export const runewordDefs: RunewordDef[] = [
 			"+(250-320)% Enhanced Damage",
 		],
 		ladderOnly: false,
+	},
+	{
+		name: "Mania",
+		runes: ["Shael", "Ko", "Eld"],
+		bases: ["weapon"],
+		level: 39,
+		releasedIn: "rotw",
+		attributes: [
+			"5% Chance to Cast Level 1 Burst of Speed on Striking",
+			"Level 1 Fanaticism Aura When Equipped",
+			"+30% Increased Attack Speed",
+			"+(180-200)% Enhanced Damage",
+			"+75% Damage to Undead",
+			"+50 to Attack Rating against Undead",
+			"+10 to Dexterity",
+		],
+		ladderOnly: true,
+	},
+	{
+		name: "Hysteria",
+		runes: ["Shael", "Ko", "Eld"],
+		bases: ["armor"],
+		level: 39,
+		releasedIn: "rotw",
+		attributes: [
+			"+65% Faster Run/Walk",
+			"+40% Increased Attack Speed",
+			"+20% Faster Hit Recovery",
+			"+6 to Evade",
+			"+10 to Dexterity",
+			"50% Slower Stamina Drain",
+			"+All Resistances +10",
+		],
+		ladderOnly: true,
 	},
 ] as const;

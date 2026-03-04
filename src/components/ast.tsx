@@ -59,9 +59,6 @@ export const ASTText = (props: Props): string => {
 			if (ast.child.value === "ladder") {
 				return `is not ladder-only`;
 			}
-			if (ast.child.value === "rotw") {
-				return `is not from Reign of the Warlock`;
-			}
 		}
 	}
 
@@ -92,9 +89,6 @@ export const ASTText = (props: Props): string => {
 	if (ast.type === "BOOL") {
 		if (ast.value === "ladder") {
 			return `is ladder-only`;
-		}
-		if (ast.value === "rotw") {
-			return `is from Reign of the Warlock`;
 		}
 	}
 

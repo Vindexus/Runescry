@@ -122,14 +122,22 @@ a:hover {
 
 .sort-controls {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 0.5rem 1.25rem;
 	margin-top: 0.5rem;
 }
 
-.sort-label {
+.control-group {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.control-label {
 	font-size: 0.85rem;
 	color: #7a6f5a;
+	white-space: nowrap;
 }
 
 .sort-controls select {
@@ -161,6 +169,18 @@ a:hover {
 	text-underline-offset: 2px;
 	font-family: inherit;
 	margin-left: auto;
+}
+
+@media (max-width: 540px) {
+	.sort-controls {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.sort-controls .syntax-toggle {
+		margin-left: 0;
+	}
 }
 
 .sort-controls .syntax-toggle:hover {

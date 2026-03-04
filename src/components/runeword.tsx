@@ -1,12 +1,10 @@
+import { getGameVersionLabel } from "../data/game_versions";
 import type { Runeword } from "../types";
 
 export const RunewordLI = ({ rw }: { rw: Runeword }) => {
 	const badges: [string, string, string?][] = [];
 	if (rw.ladderOnly) {
 		badges.push(["Ladder Only", "ladder"]);
-	}
-	if (rw.rotw) {
-		badges.push(["RotW", "rotw", "Reign of the Warlock"]);
 	}
 	return (
 		<li className="card">
@@ -31,6 +29,7 @@ export const RunewordLI = ({ rw }: { rw: Runeword }) => {
 					<div className="rw-bases">{rw.bases.join(", ")}</div>
 					<div>Req level {rw.level}</div>
 					<div>Cost ~{rw.cost.toLocaleString()}</div>
+					<div>{getGameVersionLabel(rw.releasedIn)}</div>
 					<div style={{ display: "none" }}>
 						<pre>{JSON.stringify(rw.tags, null, 2)}</pre>
 						<pre>{JSON.stringify(rw.stats, null, 2)}</pre>

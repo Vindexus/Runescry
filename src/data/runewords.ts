@@ -7,6 +7,7 @@ import type {
 	Stat,
 } from "../types";
 import { runeCost } from "./rune_cost";
+import { GAME_VERSIONS } from "./game_versions";
 import { runewordDefs } from "./runeword_defs";
 
 function parseStatRange(
@@ -143,13 +144,13 @@ export function rwDefToRuneword(d: RunewordDef): Runeword {
 
 	const rw: Runeword = {
 		...d,
-		rotw: !!d.rotw,
 		ladderOnly: !!d.ladderOnly,
 		id,
 		tags,
 		cost: runeCost(d.runes),
 		sockets,
 		stats,
+		versions: d.versions ?? GAME_VERSIONS.slice(GAME_VERSIONS.indexOf(d.releasedIn)),
 	};
 	return rw;
 }

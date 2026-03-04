@@ -24,10 +24,12 @@ function matchBase(runeword: Runeword, value: string): boolean {
 
 function matchKeyword(runeword: Runeword, keyword: string): boolean {
 	const kw = keyword.toLowerCase();
+
 	return (
 		runeword.name.toLowerCase().includes(kw) ||
 		runeword.attributes.join(" ").toLowerCase().includes(kw) ||
-		runeword.runes.some((r) => r.toLowerCase().includes(kw))
+		runeword.runes.some((r) => r.toLowerCase().includes(kw)) ||
+		runeword.bases.some((r) => r.toLowerCase().includes(kw))
 	);
 }
 
@@ -36,10 +38,6 @@ function matchRune(runeword: Runeword, rune: RuneName): boolean {
 }
 
 function matchBool(runeword: Runeword, boolField: BoolFilter): boolean {
-	if (boolField === "rotw") {
-		return runeword.rotw === true;
-	}
-
 	if (boolField === "ladder") {
 		return runeword.ladderOnly === true;
 	}

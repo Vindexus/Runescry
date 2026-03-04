@@ -182,12 +182,6 @@ class Parser {
 					value: rune,
 				};
 			}
-			if (tok.value === "rotw") {
-				return {
-					type: "BOOL",
-					value: "rotw",
-				};
-			}
 			if (tok.value === "ladder") {
 				return {
 					type: "BOOL",

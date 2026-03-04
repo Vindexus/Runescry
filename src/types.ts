@@ -1,4 +1,6 @@
-export type BoolFilter = "ladder" | "rotw";
+export type BoolFilter = "ladder";
+
+export type GameVersion = "og" | "1.10" | "1.11" | "2.4" | "2.6" | "rotw";
 
 export type BaseCategory =
 	// Category aliases (expand to multiple concrete types)
@@ -76,7 +78,8 @@ export type RunewordDef = {
 	attributes: string[];
 	level: number;
 	ladderOnly?: boolean;
-	rotw?: boolean;
+	releasedIn: GameVersion;
+	versions?: GameVersion[];
 };
 
 export type StatRange = [number, number];
@@ -125,4 +128,5 @@ export type Runeword = Required<RunewordDef> & {
 	cost: number;
 	sockets: number;
 	stats: Stats;
+	versions: GameVersion[];
 };

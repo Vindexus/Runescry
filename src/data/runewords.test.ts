@@ -51,3 +51,66 @@ describe("runewords", () => {
 		});
 	});
 });
+
+describe("game version filtering", () => {
+	it("og version includes og runewords", () => {
+		const og = RUNEWORDS.filter((rw) => rw.versions.includes("og"));
+		const names = og.map((rw) => rw.name);
+		expect(names).toContain("Stealth");
+		expect(names).toContain("Lore");
+		expect(names).toContain("Ancient's Pledge");
+	});
+
+	it("og version does not include 1.10 runewords", () => {
+		const og = RUNEWORDS.filter((rw) => rw.versions.includes("og"));
+		const names = og.map((rw) => rw.name);
+		expect(names).not.toContain("Enigma");
+		expect(names).not.toContain("Grief");
+		expect(names).not.toContain("Infinity");
+	});
+
+	it("1.10 version includes og and 1.10 runewords", () => {
+		const v110 = RUNEWORDS.filter((rw) => rw.versions.includes("1.10"));
+		const names = v110.map((rw) => rw.name);
+		expect(names).toContain("Stealth");
+		expect(names).toContain("Enigma");
+		expect(names).toContain("Infinity");
+	});
+
+	it("1.10 version does not include 1.11+ runewords", () => {
+		const v110 = RUNEWORDS.filter((rw) => rw.versions.includes("1.10"));
+		const names = v110.map((rw) => rw.name);
+		expect(names).not.toContain("Treachery");
+		expect(names).not.toContain("Flickering Flame");
+	});
+
+	it("rotw version includes everything except version-locked runewords", () => {
+		const rotw = RUNEWORDS.filter((rw) => rw.versions.includes("rotw"));
+		const names = rotw.map((rw) => rw.name);
+		expect(names).toContain("Stealth");
+		expect(names).toContain("Enigma");
+		expect(names).toContain("Mania");
+		expect(names).toContain("Hysteria");
+	});
+
+	it("Hustle variants are not available in rotw", () => {
+		const rotw = RUNEWORDS.filter((rw) => rw.versions.includes("rotw"));
+		const names = rotw.map((rw) => rw.name);
+		expect(names).not.toContain("Hustle (Weapon)");
+		expect(names).not.toContain("Hustle (Armor)");
+	});
+
+	it("Hustle variants are available in 2.6", () => {
+		const v26 = RUNEWORDS.filter((rw) => rw.versions.includes("2.6"));
+		const names = v26.map((rw) => rw.name);
+		expect(names).toContain("Hustle (Weapon)");
+		expect(names).toContain("Hustle (Armor)");
+	});
+
+	it("Mania and Hysteria are only available in rotw", () => {
+		const mania = RUNEWORDS.find((rw) => rw.name === "Mania");
+		const hysteria = RUNEWORDS.find((rw) => rw.name === "Hysteria");
+		expect(mania!.versions).toEqual(["rotw"]);
+		expect(hysteria!.versions).toEqual(["rotw"]);
+	});
+});
