@@ -536,7 +536,6 @@ export const runewordDefs: RunewordDef[] = [
 			"+2 To Mana After Each Kill",
 			"+(10-15) Life After Each Kill",
 		],
-		ladderOnly: true,
 	},
 	{
 		name: "Fortitude (Weapon)",
@@ -1651,7 +1650,6 @@ export const runewordDefs: RunewordDef[] = [
 			"+6 to Dexterity",
 			"All Resistances +15",
 		],
-		ladderOnly: true,
 	},
 	{
 		name: "Bulwark",
@@ -1796,7 +1794,6 @@ export const runewordDefs: RunewordDef[] = [
 			"+1 To Light Radius",
 			"Requirements -20%",
 		],
-		ladderOnly: true,
 	},
 	{
 		name: "Wisdom",
@@ -1815,7 +1812,6 @@ export const runewordDefs: RunewordDef[] = [
 			"+5 Mana After Each Kill",
 			"15% Damage Taken Goes to Mana",
 		],
-		ladderOnly: true,
 	},
 	{
 		name: "Mosaic",
@@ -1875,7 +1871,6 @@ export const runewordDefs: RunewordDef[] = [
 			"+25% Chance of Open Wounds",
 			"Freezes Target +3",
 		],
-		ladderOnly: true,
 	},
 	{
 		name: "Mist",
@@ -1896,7 +1891,6 @@ export const runewordDefs: RunewordDef[] = [
 			"+24 to Vitality",
 			"All Resistances +40",
 		],
-		ladderOnly: true,
 	},
 	{
 		name: "Metamorphosis",
@@ -1944,7 +1938,6 @@ export const runewordDefs: RunewordDef[] = [
 			"75% Extra Gold from Monsters",
 			"30% Better Chance of Getting Magic Items",
 		],
-		ladderOnly: true,
 	},
 	{
 		name: "Authority",
