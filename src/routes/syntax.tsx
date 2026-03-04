@@ -94,11 +94,13 @@ function SyntaxPage() {
 					</div>
 				</div>
 				<div className="syntax-section">
-					<div className="syntax-title">Flags</div>
-					<div className="syntax-desc">Filter by special flags.</div>
+					<div className="syntax-title">Ladder</div>
+					<div className="syntax-desc">
+						Filter to ladder-only runewords.
+					</div>
 					<div className="syntax-examples">
 						<code className="syntax-example">ladder</code>
-						<code className="syntax-example">rotw</code>
+						<code className="syntax-example">-ladder</code>
 					</div>
 				</div>
 				<div className="syntax-section">

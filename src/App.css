@@ -387,12 +387,6 @@ a:hover {
 	color: #c87030;
 }
 
-.badge-rotw {
-	background: #23001d;
-	color: #91187e;
-	border: 1px solid #91187e;
-}
-
 .card-meta {
 	font-size: 0.8rem;
 	color: #6a6050;
@@ -436,7 +430,10 @@ a:hover {
 	color: #9a8560;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 200ms, border-color 150ms, color 150ms;
+	transition:
+		opacity 200ms,
+		border-color 150ms,
+		color 150ms;
 }
 
 .back-to-top--visible {
