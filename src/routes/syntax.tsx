@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/syntax")({
+	head: () => ({
+		meta: [{ title: "Syntax Guide — Runescry" }],
+	}),
 	component: SyntaxPage,
 });
 
