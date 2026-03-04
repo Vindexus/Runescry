@@ -59,6 +59,14 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+	console.log(
+		"import.meta.env.VITE_ANALYTICS_DOMAIN",
+		import.meta.env.VITE_ANALYTICS_DOMAIN,
+	);
+	console.log(
+		"import.meta.env.VITE_ANALYTICS_SRC",
+		import.meta.env.VITE_ANALYTICS_SRC,
+	);
 	return (
 		<html lang="en">
 			<head>
